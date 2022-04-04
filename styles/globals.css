@@ -1,0 +1,95 @@
+@import "../node_modules/bulma/css/bulma.css";
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+
+:root{
+    --rounded: 5px;
+}
+
+body{
+    min-height: 100vh;
+    background-color:#222
+}
+
+main{
+    min-height: 100vh;
+}
+
+.navBar, .footer{
+    width: 100%;
+    background-color: #181818 !important;
+}
+
+.paymentDataForm{
+    max-width: 360px;
+    background-color: white;
+}
+
+.editPurchaseForm{
+    max-width: 900px;
+    height: fit-content;
+    background-color: white;
+    border-radius: var(--rounded);
+}
+
+
+.rowInput{
+    width:100%;
+    background: none;
+    outline: none;
+    border: none;
+}
+
+
+
+.tableHolder{background-color: white;}
+
+.tableWrapper{
+    min-height: 320px;
+    max-height: 320px;
+    overflow-y: scroll;
+}
+
+.addPurchaseFormWrapper{
+    display: flex;
+    flex-direction: column;
+    max-width: 630px;
+    min-height: 300px;
+    background-color:white ;
+    border-radius:var(--rounded);
+}
+
+.table thead tr th{background-color: #181818; color:white;}
+
+@media screen and (max-width:815px){
+    .editPurchaseForm__formsHolder{
+        flex-direction: column;
+    }
+    .paymentDataForm{
+        max-width: 100% !important;
+        margin-right:0px !important;
+    }
+    .tableHolder{margin-top: 30px;}
+
+}
+
+@media screen and (max-width:518px) {
+    .rowButton{
+        margin-bottom: 10px !important;
+    }
+    .button-text{display: none;}
+}
+
+@media screen and (max-width:465px){
+    .table thead{display: none;}
+}
+
+@media screen and (max-width:506px) {
+    .rowButton{
+        margin-right: 0px !important;
+    }
+}
+
+
+
+
+
