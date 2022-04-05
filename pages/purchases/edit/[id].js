@@ -1,14 +1,14 @@
+import EditPurchaseForm from "../../../components/forms/EditPurchaseForm";
+import Layout from "../../../components/Layout/Layout";
 
-
-export default function UniquePurchaseViewSection({ purchase }) {
+export default function UniquePurchaseEditSection({ purchase }) {
   //console.log(purchase);
 
   return (
     <>
       <Layout>
         <main className="is-flex is-justify-content-center is-align-items-center">
-
-
+          <EditPurchaseForm purchase={purchase} />
         </main>
       </Layout>
     </>

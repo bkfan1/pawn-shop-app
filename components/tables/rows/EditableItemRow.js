@@ -1,4 +1,9 @@
+import { useRouter } from "next/router";
+
+
 export default function EditableItemRow({ item, itemRowValueOnChange, deleteItemRow }) {
+  const router = useRouter();
+  const { pathname } = router;
   return (
     <tr>
       <td>
@@ -8,6 +13,7 @@ export default function EditableItemRow({ item, itemRowValueOnChange, deleteItem
           value={item.material}
           className="rowInput"
           onChange={()=>itemRowValueOnChange(item.id)}
+          disabled={pathname === "/purchases" ? true : false}
         />
       </td>
 
@@ -18,6 +24,7 @@ export default function EditableItemRow({ item, itemRowValueOnChange, deleteItem
           value={item.weight}
           className="rowInput"
           onChange={()=>itemRowValueOnChange(item.id)}
+          disabled={pathname === "/purchases" ? true : false}
         />
       </td>
       <td>
@@ -27,6 +34,7 @@ export default function EditableItemRow({ item, itemRowValueOnChange, deleteItem
           value={item.price}
           className="rowInput"
           onChange={()=>itemRowValueOnChange(item.id)}
+          disabled={pathname === "/purchases" ? true : false}
         />
       </td>
       <td>
@@ -35,14 +43,15 @@ export default function EditableItemRow({ item, itemRowValueOnChange, deleteItem
           name="paid"
           defaultChecked={item.paid}
           onChange={()=>itemRowValueOnChange(item.id)}
+          disabled={pathname === "/purchases" ? true : false}
         />
       </td>
 
-      <td>
+      {pathname === "/purchases" ? "" : <td>
         <button onClick={()=>deleteItemRow(item.id)} className="button is-danger is-size-7">
           <i className="bi bi-trash" />
         </button>
-      </td>
+      </td>}
     </tr>
   );
 }

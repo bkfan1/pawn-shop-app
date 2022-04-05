@@ -5,7 +5,7 @@ export default function PurchasesSection({ purchases }) {
   console.log(purchases);
   return (
     <Layout>
-      <main>
+      <main className="is-flex is-justify-content-center is-align-items-center">
         <PurchasesTable purchases={purchases} />
       </main>
     </Layout>

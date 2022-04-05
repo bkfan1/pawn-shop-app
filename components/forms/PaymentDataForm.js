@@ -1,21 +1,31 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-export default function PaymentDataForm({paymentMethod, paymentMethodOnChange,paymentData, paymentDataOnChange}) {
-
+export default function PaymentDataForm({
+  paymentMethod,
+  paymentMethodOnChange,
+  paymentData,
+  paymentDataOnChange,
+}) {
+  const router = useRouter();
+  const {pathname} = router;
   return (
-    <form className="paymentDataForm mr-6">
+    <form className={`paymentDataForm mr-6 ${pathname === "/purchases" ? "mt-4" : ""}`}>
       <h1 className="title is-size-4">Datos de pago</h1>
 
-      <div className="select mb-3">
-        <select
-          value={paymentMethod}
-          onChange={paymentMethodOnChange}
-        >
-          <option value="">Sin seleccionar</option>
-          <option value="pagoMovil">Pago móvil</option>
-          <option value="transferenciaBancaria">Transferencia bancaria</option>
-          <option value="dineroFisico">Dinero fisico</option>
-        </select>
+      <div className="field">
+        <label className="label">Método de pago:</label>
+
+        <div className="select mb-3">
+          <select value={paymentMethod} onChange={paymentMethodOnChange} disabled={pathname === "/purchases" ? true : false}>
+            <option value="">Sin seleccionar</option>
+            <option value="pagoMovil">Pago móvil</option>
+            <option value="transferenciaBancaria">
+              Transferencia bancaria
+            </option>
+            <option value="dineroFisico">Dinero fisico</option>
+          </select>
+        </div>
       </div>
 
       {paymentMethod === "pagoMovil" ? (
@@ -28,6 +38,7 @@ export default function PaymentDataForm({paymentMethod, paymentMethodOnChange,pa
               value={paymentData.bankName}
               onChange={paymentDataOnChange}
               className="input is-hovered"
+              disabled={pathname === "/purchases" ? true : false}
             />
           </div>
 
@@ -39,6 +50,7 @@ export default function PaymentDataForm({paymentMethod, paymentMethodOnChange,pa
               value={paymentData.bankDni}
               onChange={paymentDataOnChange}
               className="input is-hovered"
+              disabled={pathname === "/purchases" ? true : false}
             />
           </div>
 
@@ -50,6 +62,7 @@ export default function PaymentDataForm({paymentMethod, paymentMethodOnChange,pa
               value={paymentData.bankTel}
               onChange={paymentDataOnChange}
               className="input is-hovered"
+              disabled={pathname === "/purchases" ? true : false}
             />
           </div>
 
@@ -59,9 +72,9 @@ export default function PaymentDataForm({paymentMethod, paymentMethodOnChange,pa
               type="text"
               name="totalAmount"
               value={paymentData.totalAmount}
-
               onChange={paymentDataOnChange}
               className="input is-hovered"
+              disabled={pathname === "/purchases" ? true : false}
             />
           </div>
         </>
@@ -73,9 +86,9 @@ export default function PaymentDataForm({paymentMethod, paymentMethodOnChange,pa
               type="text"
               name="totalAmount"
               value={paymentData.totalAmount}
-
               onChange={paymentDataOnChange}
               className="input is-hovered"
+              disabled={pathname === "/purchases" ? true : false}
             />
           </div>
         </>
@@ -87,9 +100,9 @@ export default function PaymentDataForm({paymentMethod, paymentMethodOnChange,pa
               type="text"
               name="bankName"
               value={paymentData.bankName}
-
               onChange={paymentDataOnChange}
               className="input is-hovered"
+              disabled={pathname === "/purchases" ? true : false}
             />
           </div>
 
@@ -99,9 +112,9 @@ export default function PaymentDataForm({paymentMethod, paymentMethodOnChange,pa
               type="text"
               name="bankDni"
               value={paymentData.bankDni}
-
               onChange={paymentDataOnChange}
               className="input is-hovered"
+              disabled={pathname === "/purchases" ? true : false}
             />
           </div>
 
@@ -113,6 +126,7 @@ export default function PaymentDataForm({paymentMethod, paymentMethodOnChange,pa
               value={paymentData.bankAccountNum}
               onChange={paymentDataOnChange}
               className="input is-hovered"
+              disabled={pathname === "/purchases" ? true : false}
             />
           </div>
 
@@ -122,9 +136,9 @@ export default function PaymentDataForm({paymentMethod, paymentMethodOnChange,pa
               type="text"
               name="totalAmount"
               value={paymentData.totalAmount}
-
               onChange={paymentDataOnChange}
               className="input is-hovered"
+              disabled={pathname === "/purchases" ? true : false}
             />
           </div>
         </>

@@ -43,7 +43,7 @@ export default function AddPurchaseForm() {
   switch (step) {
     case 1:
       return (
-        <div className="addPurchaseFormWrapper p-2">
+        <div className="addPurchaseFormWrapper  p-4 is-flex is-justify-content-space-between">
           <EditableItemsTable
             items={items}
             addItemRow={addItemRow}
@@ -51,8 +51,8 @@ export default function AddPurchaseForm() {
             itemRowValueOnChange={itemRowValueOnChange}
           />
 
-          <menu className="is-flex is-justify-content-space-between p-0">
-            <button className="button is-danger">Cancelar</button>
+          <menu className="is-flex is-justify-content-space-between p-0 mt-4">
+            <button onClick={()=>router.push("/")} className="button is-danger">Cancelar</button>
             <button
               onClick={() => {
                 if (itemsValidation()) {
@@ -70,7 +70,7 @@ export default function AddPurchaseForm() {
       break;
     case 2:
       return (
-        <div className="addPurchaseFormWrapper p-2">
+        <div className="addPurchaseFormWrapper p-4 is-flex is-justify-content-space-between">
           <PaymentDataForm
             paymentMethod={paymentMethod}
             paymentMethodOnChange={paymentMethodOnChange}
@@ -78,7 +78,7 @@ export default function AddPurchaseForm() {
             paymentDataOnChange={paymentDataOnChange}
           />
 
-          <menu className="is-flex is-justify-content-space-between p-0">
+          <menu className="is-flex is-justify-content-space-between p-0 mt-5">
             <button onClick={prevStep} className="button is-info is-light">
               Atrás
             </button>
