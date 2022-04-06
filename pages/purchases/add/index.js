@@ -1,4 +1,4 @@
-import Layout from "../../../components/Layout/Layout";
+import Layout from "../../../components/layout/Layout";
 import AddPurchaseForm from "../../../components/forms/AddPurchaseForm";
 
 export default function AddPurchaseSection() {

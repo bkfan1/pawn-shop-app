@@ -1,4 +1,4 @@
-import Layout from "../components/Layout/Layout";
+import Layout from "../components/layout/Layout";
 import { useRouter } from "next/router";
 
 export default function Error() {

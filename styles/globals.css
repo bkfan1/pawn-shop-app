@@ -5,7 +5,6 @@
     --rounded: 5px;
 }
 
-
 body{
     background-color:#222
 }
@@ -33,16 +32,14 @@ main{
 }
 .customModal{
     min-width: 360px;
-    max-width: 900px;
+    max-width: 720px;
+    min-height: 490px;
     max-height: 600px;
     overflow-y: scroll;
     background-color: white;
     border-radius: var(--rounded);
 }
 
-.modalBody{
-    height: 100%;
-}
 
 .paymentDataForm{
     max-width: 360px;
@@ -51,7 +48,7 @@ main{
 
 .editPurchaseForm{
     max-width: 900px;
-    height: fit-content;
+    max-height: 900px;
     background-color: white;
     border-radius: var(--rounded);
 }
@@ -123,14 +120,18 @@ main{
 
 @media screen and (max-width:815px){
     .editPurchaseForm__formsHolder{
-        flex-direction: column;
+        flex-direction: column-reverse;
     }
+
+    .editPurchaseForm__formsHolder .tableHolder{
+        margin-bottom: 20px;
+    }
+
     .paymentDataForm{
         max-width: 100% !important;
         margin-right:0px !important;
     }
     
-
 }
 
 @media screen and (max-width:732px) {

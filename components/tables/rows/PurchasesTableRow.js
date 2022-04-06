@@ -10,6 +10,8 @@ export default function PurchasesTableRow({ purchase }) {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
 
+
+
   const deletePurchase = async (purchaseId) => {
     const op = confirm("Deseas realmente eliminar esta compra?");
 
@@ -30,7 +32,7 @@ export default function PurchasesTableRow({ purchase }) {
         <span>{purchase._id}</span>
       </td>
       <td>
-        <span>{new Date(purchase.createdAt).toLocaleString("es-VE")}</span>
+        <span>{purchase.createdAt}</span>
       </td>
       <td>
         <a title="Ver detalles de compra" className="button is-info is-light rounded is-size-7" onClick={() => setShowModal(true)}>

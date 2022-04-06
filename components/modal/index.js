@@ -16,14 +16,16 @@ export default function Modal({ show, onClose, children }) {
   const modalContent = show ? (
     <>
       <div className="modalOverlay is-flex is-justify-content-center is-align-items-center">
-        
-
         <div className="customModal is-flex is-flex-direction-column p-3">
-        <button onClick={handleCloseClick} title="Cerrar ventana modal" className="button is-align-self-flex-end">X</button>
-          {children}
-
+          <button
+            onClick={handleCloseClick}
+            title="Cerrar ventana modal"
+            className="button is-align-self-flex-end"
+          >
+            X
+          </button>
+          <section className="customModal__body py-3">{children}</section>
         </div>
-
       </div>
     </>
   ) : null;

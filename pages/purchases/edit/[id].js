@@ -1,5 +1,5 @@
 import EditPurchaseForm from "../../../components/forms/EditPurchaseForm";
-import Layout from "../../../components/Layout/Layout";
+import Layout from "../../../components/layout/Layout";
 
 export default function UniquePurchaseEditSection({ purchase }) {
   //console.log(purchase);

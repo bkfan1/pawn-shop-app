@@ -121,6 +121,11 @@
   dependencies:
     "js-tokens" "^3.0.0 || ^4.0.0"
 
+"luxon@^2.3.1":
+  "integrity" "sha512-I8vnjOmhXsMSlNMZlMkSOvgrxKJl0uOsEzdGgGNZuZPaS9KlefpE9KV95QFftlJSC+1UyCC9/I69R02cz/zcCA=="
+  "resolved" "https://registry.npmjs.org/luxon/-/luxon-2.3.1.tgz"
+  "version" "2.3.1"
+
 "memory-pager@^1.0.2":
   "integrity" "sha512-ZS4Bp4r/Zoeq6+NLJpP+0Zzm0pR8whtGPf1XExKLJBAczGMnSi3It14OiNCStjQjM6NU1okjQGSxgEZN8eBYKg=="
   "resolved" "https://registry.npmjs.org/memory-pager/-/memory-pager-1.5.0.tgz"

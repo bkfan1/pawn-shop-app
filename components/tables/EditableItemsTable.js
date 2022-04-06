@@ -1,6 +1,7 @@
 import { nanoid } from "nanoid";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useItems } from "../../hooks/useItems";
 import EditableItemRow from "./rows/EditableItemRow";
 
 export default function EditableItemsTable({

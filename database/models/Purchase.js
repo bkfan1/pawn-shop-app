@@ -11,7 +11,7 @@ const PurchaseSchema = new Schema(
             bankTel: String,
             totalAmount: String
         },
-        createdAt: Date
+        createdAt: String
     }
 )
 
