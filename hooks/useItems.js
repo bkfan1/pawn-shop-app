@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 
 export const useItems = (initialItems = []) => {
   const [items, setItems] = useState(initialItems);
+  const [itemsError, setItemsError] = useState("");
 
   const itemRowValueOnChange = (itemId) => {
     const { target } = event;
@@ -35,21 +36,36 @@ export const useItems = (initialItems = []) => {
     setItems(newItems);
   };
 
-  const itemsValidation = ()=>{
-
-    if(items.length >= 1){
-      const correctItems = items.every((item)=> item.material !== "" && item.weight !== "" && item.price !== "");
-      
-      if(correctItems){return true;}
-      else{alert("Tienes uno o varias campos sin rellenar!")}
-
-    }
-    else{
-      alert("No puedes registrar una compra vacía!")
+  const itemsValidation = () => {
+    if (items.length >= 1) {
+      const isEveryItemValid = items.every(
+        (item) =>
+          item.material !== "" && item.weight !== "" && item.price !== ""
+      );
+      if (isEveryItemValid) {
+        setItemsError("");
+        return true;
+      } else {
+        setItemsError(
+          "Hay uno o más campos de fila en la tabla de prendas sin rellenar."
+        );
+        return false;
+      }
+    } else {
+      setItemsError(
+        "No puedes registrar o actualizar una compra con datos de prenda vacíos."
+      );
       return false;
     }
+  };
 
-  }
-
-  return { items, setItems, itemRowValueOnChange, itemsValidation, addItemRow, deleteItemRow };
+  return {
+    items,
+    setItems,
+    itemRowValueOnChange,
+    itemsValidation,
+    addItemRow,
+    deleteItemRow,
+    itemsError,
+  };
 };
