@@ -38,7 +38,7 @@ export const usePaymentData = (initialPaymentMethod, initialPaymentData) => {
         break;
 
       default:
-        setPaymentData({});
+        setPaymentData(null);
         break;
     }
   };
