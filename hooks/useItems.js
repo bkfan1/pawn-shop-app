@@ -9,7 +9,7 @@ export const useItems = (initialItems = []) => {
     const { target } = event;
     const { name, value } = target;
 
-    const itemIndex = items.findIndex((item) => item.id === itemId); //console.log(itemIndex);
+    const itemIndex = items.findIndex((item) => item.id === itemId); //console.log(itemIndex) - itemIndex should be other than -1;
 
     const copiedItem = Object.assign({}, items[itemIndex]);
     copiedItem[name] = target.type === "checkbox" ? target.checked : value;
