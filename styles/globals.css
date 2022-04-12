@@ -34,7 +34,7 @@ main{
     min-width: 360px;
     max-width: 720px;
     min-height: 490px;
-    max-height: 600px;
+    max-height: 595px;
     overflow-y: scroll;
     background-color: white;
     border-radius: var(--rounded);
@@ -53,12 +53,21 @@ main{
     border-radius: var(--rounded);
 }
 
+.dailyLoanForm{
+    max-width: 900px;
+    min-height: 480px;
+    border-radius: var(--rounded);
+}
+
+.AllDailyLoansTable_Holder{
+    width: 900px;
+}
 
 .rowInput{
-    width:100%;
-    background: none;
-    outline: none;
-    border: none;
+    width:100% !important;
+    background: none !important;
+    outline: none !important;
+    border: none !important;
 }
 
 .button-icon{
@@ -118,6 +127,20 @@ main{
     
 }
 
+@media screen and (max-width:930px) {
+    .dailyLoanForm_formsHolder{
+        flex-direction: column !important;
+        overflow-y: scroll;
+
+    }
+
+    .dailyLoanForm__tableSection{
+        margin-top: 20px !important;
+    }
+
+
+}
+
 @media screen and (max-width:815px){
     .editPurchaseForm__formsHolder{
         flex-direction: column-reverse;
@@ -134,13 +157,20 @@ main{
     
 }
 
+@media screen and (max-height:800px) {
+    .dailyLoanForm{
+        max-height: 800px;
+    }
+    
+}
+
 @media screen and (max-width:732px) {
     .rowButton{
         margin-bottom: 10px !important;
     }
 }
 
-@media screen and (max-width:545px){
+@media screen and (max-width:675px){
     .table thead{display: none;}
 }
 
