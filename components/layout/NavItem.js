@@ -13,7 +13,7 @@ export default function NavItem({ title, url, icon }) {
             : "has-text-warning"
         }`}
       >
-        <i className={`${icon}${pathname === url ? "-fill" : ""} is-size-5`} />
+        <i className={`${icon}${pathname === url ? "" : ""} is-size-5`} />
         <span>{title}</span>
       </a>
     </Link>

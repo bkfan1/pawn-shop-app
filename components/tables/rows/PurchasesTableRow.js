@@ -11,7 +11,6 @@ export default function PurchasesTableRow({ purchase }) {
   const [showModal, setShowModal] = useState(false);
 
 
-
   const deletePurchase = async (purchaseId) => {
     const op = confirm("Deseas realmente eliminar esta compra?");
 

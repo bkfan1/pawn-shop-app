@@ -33,6 +33,7 @@ export default function AddPurchaseForm() {
   const createPurchase = async () => {
     // Do not convert it to json. Send it as an object
     const data = {
+      date: new Date().toLocaleDateString('es-VE'),
       items,
       paymentMethod,
       paymentData,

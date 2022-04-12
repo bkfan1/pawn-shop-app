@@ -14,17 +14,18 @@ export default function Navbar() {
       }`}
     >
       {pathname === "/" ? (
-        <h1 className="title has-text-white">Casa de empeño App</h1>
+        <h1 className="title has-text-white">Pawn Shop App</h1>
       ) : (
         ""
       )}
       <div className="navItemsContainer is-flex">
         <NavItem title="Inicio" url="/" icon="bi bi-house" />
         <NavItem
-          title="Compras"
+          title="Joyeria"
           url="/purchases"
-          icon="bi bi-journal-bookmark"
+          icon="bi bi-gem"
         />
+        <NavItem title="Préstamos" url="/loans" icon="bi bi-cash" />
       </div>
     </nav>
   );
