@@ -15,7 +15,11 @@ main{
     padding: 2.5rem;
 }
 
-.navBar, .footer{
+th{
+    padding: 7.5px !important;
+}
+
+.navBar, .myFooter{
     width: 100%;
     background-color: #181818 !important;
 }
@@ -40,147 +44,49 @@ main{
     border-radius: var(--rounded);
 }
 
-
-.paymentDataForm{
-    max-width: 360px;
-    background-color: white;
-}
-
-.editPurchaseForm{
-    max-width: 900px;
-    max-height: 900px;
-    background-color: white;
-    border-radius: var(--rounded);
-}
-
-.dailyLoanForm{
-    max-width: 900px;
-    min-height: 480px;
-    border-radius: var(--rounded);
-}
-
-.AllDailyLoansTable_Holder{
-    width: 900px;
-}
-
 .rowInput{
-    width:100% !important;
-    background: none !important;
-    outline: none !important;
-    border: none !important;
+    width: 100% !important;
+    border: none;
+    outline: none;
 }
 
-.button-icon{
-    display: none;
-    visibility: hidden;
-}
-
-.isMobileMenu{
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    height: 100%;
-}
-
-
-.navItemMobileStyles{
-    width: 90px;
-    height: 90px;
-    border-radius: 60%;
-}
-
-
-.tableHolder{background-color: white;}
-
-.tableWrapper{
-    min-height: fit-content;
-    max-height: 365px;
+.tableHolder{
+    background-color: white;
+    min-height: 415px;
+    max-height: 415px;
     overflow-y: scroll;
+    overflow-x: scroll;
+    border-radius: var(--rounded);
 }
 
-.addPurchaseFormWrapper{
-    display: flex;
-    flex-direction: column;
-    width: 800px;
-    height: 575px;
-    min-height: 300px;
-    background-color:white ;
-    border-radius:var(--rounded);
+.jewelryForm{
+    max-width: 950px;
+    border-radius: var(--rounded);
 }
 
-.table thead tr th{background-color: #181818; color:white;}
-
-.modal-btn{
-    position: absolute;
-    right: 0;
+.pawnForm{
+    max-width:900px ;
 }
+
+.loanForm, .pawnForm{
+    border-radius: var(--rounded);
+}
+
 
 @media screen and (max-width:1024px) {
-    .button-icon{
-        display: initial;
-        visibility: visible;
-    }
-
-    .button-text{display: none;}
-    
-}
-
-@media screen and (max-width:930px) {
-    .dailyLoanForm_formsHolder{
-        flex-direction: column !important;
-        overflow-y: scroll;
-
-    }
-
-    .dailyLoanForm__tableSection{
-        margin-top: 20px !important;
-    }
-
-
-}
-
-@media screen and (max-width:815px){
-    .editPurchaseForm__formsHolder{
-        flex-direction: column-reverse;
-    }
-
-    .editPurchaseForm__formsHolder .tableHolder{
-        margin-bottom: 20px;
-    }
-
-    .paymentDataForm{
-        max-width: 100% !important;
-        margin-right:0px !important;
+    .jewelryForm_formsHolder, .loanForm_formsHolder{
+        flex-direction: column;
     }
     
 }
 
-@media screen and (max-height:800px) {
-    .dailyLoanForm{
-        max-height: 800px;
-    }
-    
-}
-
-@media screen and (max-width:732px) {
-    .rowButton{
-        margin-bottom: 10px !important;
-    }
-}
-
-@media screen and (max-width:675px){
+@media screen and (max-width:785px) {
     .table thead{display: none;}
 }
 
-@media screen and (max-width:506px) {
-    .rowButton{
-        margin-right: 0px !important;
+
+@media screen and (max-width:570px) {
+    .customerDataForm{
+        flex-direction: column;
     }
 }
-
-
-
-
-

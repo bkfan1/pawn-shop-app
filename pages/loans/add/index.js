@@ -1,34 +1,26 @@
+import LoanForm from "../../../components/forms/LoanForm";
 import Layout from "../../../components/layout/Layout";
-import DailyLoanForm from "../../../components/forms/DailyLoanForm";
-import { nanoid } from "nanoid";
 
-const testDailyLoan = {
-  _id: "624c7f68c67b0ebc474e0701",
-  date: "",
-  customer: {
-    name: "",
-    surname: "",
-    dni: "",
-    tel: "",
-    address: "",
-  },
+export default function AddLoanSection() {
+  let loan = {
+    date: "12/12/22",
+    customer: {
+      name: "",
+      surname: "",
+      dni: "",
+      tel: "",
+      address: "",
+    },
+    payments: [],
 
-  capital:0,
-  emuloments:0,
+    capital: "",
+    emuloments: "",
 
-  payments: [],
-
-  totalAmount: 0,
-}
-
-
-export default function AddDailyLoanSection() {
+    totalAmount: "",
+  };
   return (
     <Layout>
-      <main>
-          <DailyLoanForm dailyLoan={testDailyLoan} />
-
-      </main>
+      <LoanForm loan={loan} />
     </Layout>
   );
 }

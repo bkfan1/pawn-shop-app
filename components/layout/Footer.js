@@ -1,9 +1,17 @@
-
-
 export default function Footer(){
     return(
-        <footer className="footer p-3 is-flex is-justify-content-center is-align-items-center">
-            <a className="has-text-warning" href="https://www.github.com/bkfan1">Desarrollado por Jackson Paredes Ferranti @bkfan1</a>
-        </footer>
+        <footer className="myFooter is-flex is-flex-direction-column is-align-items-center is-justify-content-center p-3">
+        <p className="has-text-warning">Creado por Jackson Paredes Ferranti</p>
+        <ul>
+          <li>
+            <a
+              className="has-text-warning"
+              href="https://www.github.com/bkfan1"
+            >
+              <i className="bi bi-github" />
+            </a>
+          </li>
+        </ul>
+      </footer>
     )
 }

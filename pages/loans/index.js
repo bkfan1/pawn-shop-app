@@ -1,27 +1,23 @@
 import { nanoid } from "nanoid";
-import DailyLoanForm from "../../components/forms/DailyLoanForm";
+import LoanForm from "../../components/forms/LoanForm";
 import Layout from "../../components/layout/Layout";
-import AllDailyLoansTable from "../../components/tables/AllDailyLoansTable";
+import EditableTable from "../../components/tables/EditableTable";
+import ViewOnlyTable from "../../components/tables/ViewOnlyTable";
 
-
-export default function DailyLoansSection({dailyLoans}) {
-  console.log(dailyLoans)
+export default function AllLoansSection({ loans }) {
+  console.log(loans);
+  
   return (
     <Layout>
-      <main className="is-flex is-align-items-center is-justify-content-center">
-        <AllDailyLoansTable dailyLoans={dailyLoans} />
-
-      </main>
+        <ViewOnlyTable data={loans} />
     </Layout>
   );
 }
 
-export async function getServerSideProps(){
-  const res = await fetch('http://localhost:3000/api/loans');
-  const dailyLoans = await res.json();
+export async function getStaticProps() {
+  const res = await fetch(`http://localhost:3000/api/loans/`);
 
-  return {
-    props: {dailyLoans}
-  }
+  const loans = await res.json();
 
+  return { props: { loans } };
 }
