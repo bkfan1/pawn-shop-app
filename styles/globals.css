@@ -5,6 +5,7 @@
     --rounded: 5px;
 }
 
+
 body{
     background-color:#222
 }
@@ -22,6 +23,12 @@ th{
 .navBar, .myFooter{
     width: 100%;
     background-color: #181818 !important;
+}
+
+.navBar__mobileStyles{
+    position: absolute;
+    z-index: 3;
+    height: 100% !important;
 }
 
 .modalOverlay{
@@ -50,6 +57,12 @@ th{
     outline: none;
 }
 
+.modalBtn{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
 .tableHolder{
     background-color: white;
     min-height: 415px;
@@ -61,16 +74,22 @@ th{
 
 .jewelryForm{
     max-width: 950px;
-    border-radius: var(--rounded);
 }
 
 .pawnForm{
     max-width:900px ;
 }
 
-.loanForm, .pawnForm{
+.jewelryForm, .loanForm, .pawnForm, .viewOnlyTableHolder{
     border-radius: var(--rounded);
 }
+
+.statusFigure{
+    min-width: 360px;
+    min-height: 360px;
+}
+
+
 
 
 @media screen and (max-width:1024px) {
@@ -82,6 +101,13 @@ th{
 
 @media screen and (max-width:785px) {
     .table thead{display: none;}
+}
+
+@media screen and (max-width:748px) {
+    .rowButton{
+        margin-bottom: 10px;
+    }
+    
 }
 
 

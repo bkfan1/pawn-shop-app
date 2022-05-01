@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@microsoft/office-js@^1.1.73":
+  "integrity" "sha512-f43/w9OSwKpHbe2s3+K7IQgeb8d9oiT9lTfVSRcOt5aHp/nufpItYsH6JawkhqHDDXPNv9ie0AoWKBPjZq9V5Q=="
+  "resolved" "https://registry.npmjs.org/@microsoft/office-js/-/office-js-1.1.73.tgz"
+  "version" "1.1.73"
+
 "@next/env@12.1.4":
   "integrity" "sha512-7gQwotJDKnfMxxXd8xJ2vsX5AzyDxO3zou0+QOXX8/unypA6icw5+wf6A62yKZ6qQ4UZHHxS68pb6UV+wNneXg=="
   "resolved" "https://registry.npmjs.org/@next/env/-/env-12.1.4.tgz"

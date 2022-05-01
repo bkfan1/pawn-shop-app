@@ -3,6 +3,8 @@ import Customer from "../database/models/Customer";
 import JewelryPurchase from "../database/models/JewelryPurchase";
 import Loan from "../database/models/Loan";
 import Pawn from "../database/models/Pawn";
+
+
 export async function getAllCustomers(req, res){
   try {
     const db = await connection();
