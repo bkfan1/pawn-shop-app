@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 export default function CustomerDataForm({ customer, customerDataOnChange }) {
   const router = useRouter();
   const { pathname } = router;
+  const paths = ["/loans", "/jewelry", "/pawns"];
 
   return (
     <form className="customerDataForm is-flex">
@@ -17,6 +18,7 @@ export default function CustomerDataForm({ customer, customerDataOnChange }) {
             value={customer.name}
             onChange={customerDataOnChange}
             required
+            disabled={paths.includes(pathname) ? true : false}
           />
         </div>
 
@@ -29,6 +31,7 @@ export default function CustomerDataForm({ customer, customerDataOnChange }) {
             value={customer.tel}
             onChange={customerDataOnChange}
             required
+            disabled={paths.includes(pathname) ? true : false}
           />
         </div>
       </section>
@@ -43,6 +46,7 @@ export default function CustomerDataForm({ customer, customerDataOnChange }) {
             value={customer.surname}
             onChange={customerDataOnChange}
             required
+            disabled={paths.includes(pathname) ? true : false}
           />
         </div>
 
@@ -55,6 +59,7 @@ export default function CustomerDataForm({ customer, customerDataOnChange }) {
             value={customer.address}
             onChange={customerDataOnChange}
             required
+            disabled={paths.includes(pathname) ? true : false}
           />
         </div>
       </section>
@@ -68,6 +73,7 @@ export default function CustomerDataForm({ customer, customerDataOnChange }) {
           value={customer.dni}
           onChange={customerDataOnChange}
           required
+          disabled={paths.includes(pathname) ? true : false}
         />
       </div>
     </form>

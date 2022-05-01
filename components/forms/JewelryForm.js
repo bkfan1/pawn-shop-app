@@ -1,11 +1,14 @@
 import { nanoid } from "nanoid";
 import { useTableRows } from "../../hooks/useTableRows";
+import { useResponseStatus } from "../../hooks/useResponseStatus";
+
 import EditableTable from "../tables/EditableTable";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useJewelryPaymentData } from "../../hooks/useJewelryPaymentData";
 import JewelryPaymentDataForm from "./JewelryPaymentDataForm";
 import axios from "axios";
+import ResponseStatusModal from "../misc/ResponseStatusModal";
 
 export default function JewelryForm({ jewelryPurchase }) {
   const router = useRouter();
@@ -16,12 +19,10 @@ export default function JewelryForm({ jewelryPurchase }) {
     { id: nanoid(), headerName: "Gramos" },
     { id: nanoid(), headerName: "Precio" },
     { id: nanoid(), headerName: "Pagado" },
-    { id: nanoid(), headerName: "Acciones" },
   ];
 
-  const { rows, addRow, deleteRow, rowCellInputValueOnChange } = useTableRows(
-    jewelryPurchase.jewelry,
-    {
+  const { rows, addRow, deleteRow, rowCellInputValueOnChange, rowsValidation } =
+    useTableRows(jewelryPurchase.jewelry, {
       id: nanoid(),
       cells: [
         {
@@ -48,120 +49,147 @@ export default function JewelryForm({ jewelryPurchase }) {
           inputValue: false,
           inputName: "paid",
         },
-
-        {
-          cellName: "Acciones",
-          inputType: "button",
-          inputName: "deleteBtn",
-        },
       ],
-    }
-  );
+    });
 
   const {
     paymentMethod,
     paymentMethodOnChange,
     paymentData,
     paymentDataOnChange,
-    paymentDataValidation
-  } = useJewelryPaymentData(jewelryPurchase.paymentMethod, jewelryPurchase.paymentData);
+    paymentDataValidation,
+  } = useJewelryPaymentData(
+    jewelryPurchase.paymentMethod,
+    jewelryPurchase.paymentData
+  );
 
-  const jewelryFormRowsValidation = ()=>{
+  const {
+    status,
+    setStatus,
+    statusMessage,
+    setStatusMessage,
+    handleStatusMessage,
+  } = useResponseStatus();
 
-    let fields = [];
-    rows.forEach((row)=>{
-      row.cells.forEach((cell)=>{
-        cell.inputType !== "button" ? fields.push(cell.inputValue) : ""
-      })
-    });
-
-    console.log(fields)
-
-    //console.log(fields.every((field)=> field !== ""))
-
-    return fields.every((field)=> field !== "");
-
-  }
-
-  const handleOnSubmit = async()=>{
-
+  const handleOnSubmit = async () => {
     const isValidPaymentData = paymentDataValidation();
-    const isValidRowData = jewelryFormRowsValidation();
+    const isValidRowData = rowsValidation();
+    const isValidDate = transactionDate !== "";
 
-    if(isValidPaymentData && isValidRowData){
+    if (isValidDate && isValidPaymentData && isValidRowData ) {
       const method = pathname === "/jewelry/add" ? "POST" : "PUT";
-      const url = pathname === "/jewelry/add" ? "http://localhost:3000/api/jewelry" : `http://localhost:3000/api/jewelry/${jewelryPurchase._id}`;
+      const url =
+        pathname === "/jewelry/add"
+          ? "http://localhost:3000/api/jewelry"
+          : `http://localhost:3000/api/jewelry/${jewelryPurchase._id}`;
 
-      const data = {
-        date: new Date().toLocaleDateString('es-VE'),
+      const data = pathname === "/jewelry/add" ? {
+        date: transactionDate,
 
         jewelry: rows,
         paymentMethod,
         paymentData,
 
-        createdAt: new Date()
-      }
+        createdAt: new Date(),
+      } : {
+
+        jewelry: rows,
+        paymentMethod,
+        paymentData,
+
+      };
 
       const res = await axios({
         method,
         url,
-        data
-      })
+        data,
+      });
 
-      res.status === 200 ? console.log("compra registrada con exito") : console.warn("ocurrión un error al actualizar la compra")
+      console.log(res.status);
+
+      handleStatusMessage(res.status);
     }
+  };
 
-  }
+  const [transactionDate, setTransactionDate] = useState("");
+
 
   return (
     <>
       <div className="jewelryForm is-flex is-flex-direction-column has-background-white p-4">
-        <h1 className="title is-size-4">
-          {pathname === "/jewelry/add"
-            ? "Añadir compra de prendas"
-            : pathname === "/jewelry/edit/[id]"
-            ? "Editar compra de prendas"
-            : ""}
-        </h1>
-
-        <section className="jewelryForm_formsHolder is-flex ">
-          <section className="is-flex is-flex-direction-column mr-5 ">
-            <h1 className="title is-size-4">Datos de pago</h1>
-            <JewelryPaymentDataForm
-              paymentMethod={paymentMethod}
-              paymentMethodOnChange={paymentMethodOnChange}
-              paymentData={paymentData}
-              paymentDataOnChange={paymentDataOnChange}
+        {status !== null ? (
+          <>
+            <ResponseStatusModal
+              status={status}
+              statusMessage={statusMessage}
+              pathToAddNew={"/jewelry/add"}
             />
-          </section>
-          <hr/>
-
-          <section className="is-flex is-flex-direction-column">
-            <h1 className="title is-size-4">Datos de prendas</h1>
-            <EditableTable
-              columns={columns}
-              rows={rows}
-              addRow={addRow}
-              deleteRow={deleteRow}
-              rowCellInputValueOnChange={rowCellInputValueOnChange}
-              pathToDisableButton={"/jewelry/"}
-            />
-          </section>
-        </section>
-
-        {pathname === "/jewelry/add" || pathname === "/jewelry/edit/[id]" ? (
-          <button onClick={handleOnSubmit} className="button is-success mt-3">
-            <i
-              className={`${
-                pathname === "/jewelry/add" ? "bi bi-plus" : "bi bi-arrow-up"
-              }`}
-            />
-            {pathname === "/jewelry/add"
-              ? "Añadir compra de joyas"
-              : "Actualizar compra de joyas"}
-          </button>
+          </>
         ) : (
-          ""
+          <>
+            <h1 className="title is-size-4">
+              {pathname === "/jewelry/add"
+                ? "Añadir compra de prendas"
+                : pathname === "/jewelry/edit/[id]"
+                ? "Editar compra de prendas"
+                : ""}
+            </h1>
+            <div className="field">
+              <label className="label">Fecha</label>
+              <input type="date" value={jewelryPurchase.date} onChange={(e)=>{
+                setTransactionDate(e.target.value)
+
+              }} className="input"
+              disabled={pathname === "/jewelry" ? true : false}
+              />
+            </div>
+
+
+            <section className="jewelryForm_formsHolder is-flex ">
+              <section className="is-flex is-flex-direction-column mr-5 ">
+                <h1 className="title is-size-4">Datos de pago</h1>
+                <JewelryPaymentDataForm
+                  paymentMethod={paymentMethod}
+                  paymentMethodOnChange={paymentMethodOnChange}
+                  paymentData={paymentData}
+                  paymentDataOnChange={paymentDataOnChange}
+                />
+              </section>
+              <hr />
+
+              <section className="is-flex is-flex-direction-column">
+                <h1 className="title is-size-4">Datos de prendas</h1>
+                <EditableTable
+                  columns={columns}
+                  rows={rows}
+                  addRow={addRow}
+                  deleteRow={deleteRow}
+                  rowCellInputValueOnChange={rowCellInputValueOnChange}
+                />
+              </section>
+            </section>
+
+            {pathname === "/jewelry/add" ||
+            pathname === "/jewelry/edit/[id]" ? (
+              <button
+                onClick={handleOnSubmit}
+                className="button is-success mt-3"
+              >
+                <i
+                  className={`${
+                    pathname === "/jewelry/add"
+                      ? "bi bi-plus"
+                      : "bi bi-arrow-up"
+                  }`}
+                />
+                {pathname === "/jewelry/add"
+                  ? "Añadir compra de joyas"
+                  : "Actualizar compra de joyas"}
+              </button>
+            ) : (
+              ""
+            )}
+          </>
         )}
       </div>
     </>

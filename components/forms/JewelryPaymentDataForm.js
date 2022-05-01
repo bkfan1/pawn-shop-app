@@ -1,6 +1,9 @@
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 export default function JewelryPaymentDataForm({paymentMethod, paymentMethodOnChange ,paymentData, paymentDataOnChange}) {
-  
+  const router = useRouter();
+  const {pathname} = router;
+  const paths = ["/loans", "/jewelry", "/pawns"];
 
   return (
     <form className="jewelryPaymentDataForm is-flex is-flex-direction-column">
@@ -10,6 +13,7 @@ export default function JewelryPaymentDataForm({paymentMethod, paymentMethodOnCh
         <select
           value={paymentMethod}
           onChange={paymentMethodOnChange}
+          disabled={paths.includes(pathname) ? true : false}
         >
           <option value="">Sin seleccionar</option>
           <option value="Pago móvil">Pago móvil</option>
@@ -28,6 +32,7 @@ export default function JewelryPaymentDataForm({paymentMethod, paymentMethodOnCh
               value={paymentData.bankName}
               className="input"
               onChange={paymentDataOnChange}
+              disabled={paths.includes(pathname) ? true : false}
             />
           </div>
 
@@ -39,6 +44,7 @@ export default function JewelryPaymentDataForm({paymentMethod, paymentMethodOnCh
               value={paymentData.bankDni}
               className="input"
               onChange={paymentDataOnChange}
+              disabled={paths.includes(pathname) ? true : false}
             />
           </div>
 
@@ -50,6 +56,7 @@ export default function JewelryPaymentDataForm({paymentMethod, paymentMethodOnCh
               value={paymentData.bankTel}
               className="input"
               onChange={paymentDataOnChange}
+              disabled={paths.includes(pathname) ? true : false}
             />
           </div>
 
@@ -61,6 +68,7 @@ export default function JewelryPaymentDataForm({paymentMethod, paymentMethodOnCh
               value={paymentData.totalAmount}
               className="input"
               onChange={paymentDataOnChange}
+              disabled={paths.includes(pathname) ? true : false}
             />
           </div>
         </section>
@@ -74,6 +82,7 @@ export default function JewelryPaymentDataForm({paymentMethod, paymentMethodOnCh
               value={paymentData.bankName}
               className="input"
               onChange={paymentDataOnChange}
+              disabled={paths.includes(pathname) ? true : false}
             />
           </div>
 
@@ -85,6 +94,7 @@ export default function JewelryPaymentDataForm({paymentMethod, paymentMethodOnCh
               value={paymentData.bankDni}
               className="input"
               onChange={paymentDataOnChange}
+              disabled={paths.includes(pathname) ? true : false}
             />
           </div>
 
@@ -96,6 +106,7 @@ export default function JewelryPaymentDataForm({paymentMethod, paymentMethodOnCh
               value={paymentData.bankAccountNum}
               className="input"
               onChange={paymentDataOnChange}
+              disabled={paths.includes(pathname) ? true : false}
             />
           </div>
 
@@ -107,6 +118,7 @@ export default function JewelryPaymentDataForm({paymentMethod, paymentMethodOnCh
               value={paymentData.totalAmount}
               className="input"
               onChange={paymentDataOnChange}
+              disabled={paths.includes(pathname) ? true : false}
             />
           </div>
         </section>
@@ -119,6 +131,7 @@ export default function JewelryPaymentDataForm({paymentMethod, paymentMethodOnCh
             value={paymentData.totalAmount}
             className="input"
             onChange={paymentDataOnChange}
+            disabled={paths.includes(pathname) ? true : false}
           />
         </div>
       ) : (

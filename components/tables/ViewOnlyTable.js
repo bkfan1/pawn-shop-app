@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useRouter } from "next/router";
 import ViewOnlyRow from "./rows/ViewOnlyRow";
 import { useLocalPagination } from "../../hooks/useLocalPagination";
@@ -5,22 +6,27 @@ import { useLocalPagination } from "../../hooks/useLocalPagination";
 export default function ViewOnlyTable({ data }) {
   const router = useRouter();
   const { pathname } = router;
+  const [filteredData, setFilteredData] = useState([]);
+  const [dateFilterValue, setDateFilterValue] = useState("");
 
-  const {
-    currentPage,
-    setCurrentPage,
-    filteredData,
-    setFilteredData,
-    prevPage,
-    nextPage,
-  } = useLocalPagination(data);
+  const handleFilterByDate = () => {
+    const { target } = event;
+    const { value } = target;
+
+    setDateFilterValue(value);
+
+    const newFilteredData = data.filter(
+      (d) => d.date === value || d.agreementDate === value
+    );
+    setFilteredData(newFilteredData);
+  };
+
   return (
     <>
       <div
-        className="has-background-white is-flex is-flex-direction-column p-4"
-        style={{maxWidth:"700px" ,borderRadius: "5px" }}
+        className={`viewOnlyTableHolder has-background-white is-flex is-flex-direction-column p-4`}
       >
-        <h1 className="title is-size-4">
+        <h1 className="title is-size-4 mb-3">
           {pathname === "/loans"
             ? "Préstamos"
             : pathname === "/pawns"
@@ -29,18 +35,20 @@ export default function ViewOnlyTable({ data }) {
             ? "Compras de prendas"
             : ""}
         </h1>
-        <section className="mb-3">
-          <div className="field">
-            <label className="label">Buscar por:</label>
-            <input
-              type="text"
-              className="input"
-              placeholder="Buscar por fecha ó ID..."
-            />
-          </div>
-          <button onClick={()=>
-        router.push(`${pathname}/add`)
-        } className="button is-success mt-3 ">
+        <section className="is-flex is-align-items-center  is-justify-content-space-between my-2">
+        <div className="field">
+          <label className="label">Filtrar por fecha:</label>
+          <input
+            type="date"
+            onChange={handleFilterByDate}
+            className="input"
+            style={{ width: "160px" }}
+          />
+        </div>
+          <button
+            onClick={() => router.push(`${pathname}/add`)}
+            className="button is-success mt-3 "
+          >
             <i className="bi bi-plus" /> <span className="mr-1">Añadir</span>
             {pathname === "/loans"
               ? "nuevo préstamo"
@@ -50,41 +58,31 @@ export default function ViewOnlyTable({ data }) {
               ? " nueva compra de joyas"
               : ""}
           </button>
-          <hr className="mt-4 mb-1" />
+
+          
+  
+      
         </section>
+        
         <div className="tableHolder">
           <table className="table is-striped is-hoverable">
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Fecha</th>
+                <th>Fecha (AAAA/MM/DD)</th>
                 <th>Detalles</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
-              {filteredData.map((data) => (
-                <ViewOnlyRow rowData={data} key={data._id} />
-              ))}
+              {dateFilterValue === ""
+                ? data.map((row) => <ViewOnlyRow rowData={row} key={row.id} />)
+                : filteredData.map((row) => (
+                    <ViewOnlyRow rowData={row} key={row.id} />
+                  ))}
             </tbody>
           </table>
         </div>
-        <menu className="is-flex is-justify-content-space-between is-fullwidth m-0 p-0">
-          <button
-            onClick={prevPage}
-            disabled={currentPage === 0 ? true : false}
-            className="button is-link"
-          >
-            Anterior página
-          </button>
-          <button
-            onClick={nextPage}
-            disabled={currentPage >= filteredData.length ? true : false}
-            className="button is-link"
-          >
-            Siguiente página
-          </button>
-        </menu>
       </div>
     </>
   );

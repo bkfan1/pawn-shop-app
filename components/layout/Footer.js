@@ -10,6 +10,10 @@ export default function Footer(){
             >
               <i className="bi bi-github" />
             </a>
+            <a className="mx-2 has-text-warning" href="mailto:jacksonpf177@gmail.com">
+              <i className="bi bi-envelope-fill" />
+
+            </a>
           </li>
         </ul>
       </footer>

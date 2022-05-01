@@ -1,9 +1,15 @@
+import { useRouter } from "next/router";
+
 export default function EditableRow({
   rowId,
   cells,
   deleteRow,
   rowCellInputValueOnChange,
 }) {
+  const router = useRouter();
+  const { pathname } = router;
+  const paths = ["/loans", "/jewelry", "/pawns"];
+
   return (
     <>
       <tr>
@@ -15,11 +21,8 @@ export default function EditableRow({
                 checked={cell.inputValue}
                 name={cell.inputName}
                 onChange={(e) => rowCellInputValueOnChange(rowId)}
+                disabled={paths.includes(pathname) ? true :false}
               />
-            ) : cell.inputType === "button" ? (
-              <button onClick={()=>deleteRow(rowId)} className="button is-danger is-size-7" title="Eliminar fila">
-                <i className="bi bi-trash" />
-              </button>
             ) : (
               <input
                 type={cell.inputType}
@@ -28,10 +31,14 @@ export default function EditableRow({
                 onChange={(e) => rowCellInputValueOnChange(rowId)}
                 className="rowInput"
                 placeholder={cell.cellName}
+                disabled={paths.includes(pathname) ? true :false}
               />
             )}
           </td>
         ))}
+        {paths.includes(pathname) ? null : <td>
+          <button title="Eliminar fila" className="button is-danger is-size-7" onClick={()=>deleteRow(rowId)}><i className="bi bi-trash"/></button>
+        </td>}
       </tr>
     </>
   );
