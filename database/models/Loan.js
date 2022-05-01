@@ -10,7 +10,7 @@ const LoanSchema = new Schema(
     customer: {
       name: { type: String, required: true },
       surname: { type: String, required: true },
-      dni: { type: String, required: true, unique: true },
+      dni: { type: String, required: true},
       tel: { type: String, required: true },
       address: { type: String, required: false },
     },
