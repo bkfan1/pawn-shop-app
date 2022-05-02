@@ -1,11 +1,15 @@
-import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
+
 import Modal from "../../misc/Modal";
 import JewelryForm from "../../forms/JewelryForm";
 import PawnForm from "../../forms/PawnForm";
 
 import LoanForm from "../../forms/LoanForm";
+import convertDate from "../../../utils/formatDate";
+
+import axios from "axios";
+
 
 export default function ViewOnlyRow({ rowData }) {
   const router = useRouter();
@@ -15,10 +19,14 @@ export default function ViewOnlyRow({ rowData }) {
   console.log(rowData);
 
   const handleDelete = async () => {
-    const op = confirm("Realmente deseas eliminarlo?:");
+    
+    const op = confirm("¿Realmente deseas eliminar este registro?:");
+
     if (op) {
       const url = `http://localhost:3000/api/${pathname}/${rowData._id}`;
+
       console.log(url);
+
       const res = await axios.delete(url);
 
       res.status === 200
@@ -33,15 +41,17 @@ export default function ViewOnlyRow({ rowData }) {
     <>
       <tr>
         <td>{rowData._id}</td>
-        <td>{rowData.date || rowData.agreementDate}</td>
+        <td title="dd/mm/aaaa">{rowData.date ? convertDate(rowData.date) : rowData.agreementDate ? convertDate(rowData.agreementDate) : ""}</td>
         <td>
           <a
-            onClick={() => setShowModal(!showModal)}
+            onClick={() => {
+              setShowModal(!showModal)
+            }}
             className="button is-info is-light is-size-7"
           >
             Ver
           </a>
-          <Modal show={showModal} onClose={() => setShowModal(false)}>
+          {showModal ? <Modal show={showModal} onClose={() => setShowModal(false)}>
             {pathname === "/jewelry" ? (
               <JewelryForm jewelryPurchase={rowData} />
             ) : pathname === "/loans" ? (
@@ -51,7 +61,7 @@ export default function ViewOnlyRow({ rowData }) {
             ) : (
               ""
             )}
-          </Modal>
+          </Modal> : ""}
         </td>
         <td>
           <button
@@ -61,6 +71,7 @@ export default function ViewOnlyRow({ rowData }) {
           >
             <i className="bi bi-pencil" />
           </button>
+
           <button
             onClick={handleDelete}
             title="Eliminar"
@@ -68,6 +79,8 @@ export default function ViewOnlyRow({ rowData }) {
           >
             <i className="bi bi-trash" />
           </button>
+
+
         </td>
       </tr>
     </>

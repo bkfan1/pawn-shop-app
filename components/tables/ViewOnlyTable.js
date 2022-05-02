@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import ViewOnlyRow from "./rows/ViewOnlyRow";
+
 import { useLocalPagination } from "../../hooks/useLocalPagination";
+
+import ViewOnlyRow from "./rows/ViewOnlyRow";
+
 
 export default function ViewOnlyTable({ data }) {
   const router = useRouter();
@@ -36,18 +39,18 @@ export default function ViewOnlyTable({ data }) {
             : ""}
         </h1>
         <section className="is-flex is-align-items-center  is-justify-content-space-between my-2">
-        <div className="field">
-          <label className="label">Filtrar por fecha:</label>
-          <input
-            type="date"
-            onChange={handleFilterByDate}
-            className="input"
-            style={{ width: "160px" }}
-          />
-        </div>
+          <div className="field">
+            <label className="label">Filtrar por fecha:</label>
+            <input
+              type="date"
+              onChange={handleFilterByDate}
+              className="input"
+              style={{ width: "160px" }}
+            />
+          </div>
           <button
             onClick={() => router.push(`${pathname}/add`)}
-            className="button is-success mt-3 "
+            className="button is-success mt-4 ml-3 "
           >
             <i className="bi bi-plus" /> <span className="mr-1">Añadir</span>
             {pathname === "/loans"
@@ -58,18 +61,14 @@ export default function ViewOnlyTable({ data }) {
               ? " nueva compra de joyas"
               : ""}
           </button>
-
-          
-  
-      
         </section>
-        
+
         <div className="tableHolder">
           <table className="table is-striped is-hoverable">
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Fecha (AAAA/MM/DD)</th>
+                <th>Fecha</th>
                 <th>Detalles</th>
                 <th>Acciones</th>
               </tr>

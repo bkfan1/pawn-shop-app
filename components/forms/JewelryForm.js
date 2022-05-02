@@ -1,14 +1,17 @@
-import { nanoid } from "nanoid";
-import { useTableRows } from "../../hooks/useTableRows";
-import { useResponseStatus } from "../../hooks/useResponseStatus";
-
-import EditableTable from "../tables/EditableTable";
 import { useState } from "react";
 import { useRouter } from "next/router";
+
+import { useTableRows } from "../../hooks/useTableRows";
+import { useResponseStatus } from "../../hooks/useResponseStatus";
 import { useJewelryPaymentData } from "../../hooks/useJewelryPaymentData";
+
+import EditableTable from "../tables/EditableTable";
 import JewelryPaymentDataForm from "./JewelryPaymentDataForm";
-import axios from "axios";
 import ResponseStatusModal from "../misc/ResponseStatusModal";
+
+import { nanoid } from "nanoid";
+import axios from "axios";
+
 
 export default function JewelryForm({ jewelryPurchase }) {
   const router = useRouter();
@@ -92,6 +95,7 @@ export default function JewelryForm({ jewelryPurchase }) {
 
         createdAt: new Date(),
       } : {
+        date: transactionDate,
 
         jewelry: rows,
         paymentMethod,
@@ -111,7 +115,7 @@ export default function JewelryForm({ jewelryPurchase }) {
     }
   };
 
-  const [transactionDate, setTransactionDate] = useState("");
+  const [transactionDate, setTransactionDate] = useState(jewelryPurchase.date);
 
 
   return (
@@ -123,6 +127,7 @@ export default function JewelryForm({ jewelryPurchase }) {
               status={status}
               statusMessage={statusMessage}
               pathToAddNew={"/jewelry/add"}
+              
             />
           </>
         ) : (
@@ -136,10 +141,11 @@ export default function JewelryForm({ jewelryPurchase }) {
             </h1>
             <div className="field">
               <label className="label">Fecha</label>
-              <input type="date" value={jewelryPurchase.date} onChange={(e)=>{
+              <input type="date" value={transactionDate} onChange={(e)=>{
                 setTransactionDate(e.target.value)
 
               }} className="input"
+              style={{width:"160px"}}
               disabled={pathname === "/jewelry" ? true : false}
               />
             </div>

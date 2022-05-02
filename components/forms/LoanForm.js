@@ -1,15 +1,20 @@
-import { nanoid } from "nanoid";
-import EditableTable from "../tables/EditableTable";
-import CustomerDataForm from "./CustomerDataForm";
+import { useRouter } from "next/router";
+import { useState } from "react";
+
 import { useTableRows } from "../../hooks/useTableRows";
 import { useResponseStatus } from "../../hooks/useResponseStatus";
 import { useCustomer } from "../../hooks/useCustomer";
 import { useDate } from "../../hooks/useDate";
+
+import EditableTable from "../tables/EditableTable";
+import CustomerDataForm from "./CustomerDataForm";
+
 import ResponseStatusModal from "../misc/ResponseStatusModal";
 
-import { useRouter } from "next/router";
-import { useState } from "react";
+
 import axios from "axios";
+import { nanoid } from "nanoid";
+
 
 export default function LoanForm({ loan }) {
   const router = useRouter();

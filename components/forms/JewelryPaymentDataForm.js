@@ -1,15 +1,20 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-export default function JewelryPaymentDataForm({paymentMethod, paymentMethodOnChange ,paymentData, paymentDataOnChange}) {
+
+export default function JewelryPaymentDataForm({
+  paymentMethod,
+  paymentMethodOnChange,
+  paymentData,
+  paymentDataOnChange,
+}) {
   const router = useRouter();
-  const {pathname} = router;
+  const { pathname } = router;
   const paths = ["/loans", "/jewelry", "/pawns"];
 
   return (
     <form className="jewelryPaymentDataForm is-flex is-flex-direction-column">
       <label className="label">Método de pago:</label>
-      <div className="select mb-3" style={{width:"fit-content"}} >
-        
+      <div className="select mb-3" style={{ width: "fit-content" }}>
         <select
           value={paymentMethod}
           onChange={paymentMethodOnChange}

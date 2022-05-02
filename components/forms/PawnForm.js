@@ -1,14 +1,18 @@
-import { nanoid } from "nanoid";
+import { useState } from "react";
 import { useRouter } from "next/router";
-import EditableTable from "../tables/EditableTable";
-import EditableRow from "../tables/rows/EditableRow";
-import CustomerDataForm from "./CustomerDataForm";
+
 import { useTableRows } from "../../hooks/useTableRows";
 import { useCustomer } from "../../hooks/useCustomer";
-import { useState } from "react";
-import axios from "axios";
 import { useResponseStatus } from "../../hooks/useResponseStatus";
+
+import axios from "axios";
+import { nanoid } from "nanoid";
+
+
+import EditableTable from "../tables/EditableTable";
+import CustomerDataForm from "./CustomerDataForm";
 import ResponseStatusModal from "../misc/ResponseStatusModal";
+
 
 export default function PawnForm({ pawn }) {
   const router = useRouter();

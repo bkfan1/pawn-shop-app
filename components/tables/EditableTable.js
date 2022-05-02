@@ -1,7 +1,9 @@
-import EditableRow from "./rows/EditableRow";
-import { nanoid } from "nanoid";
 import { useState } from "react";
 import { useRouter } from "next/router";
+
+import EditableRow from "./rows/EditableRow";
+import { nanoid } from "nanoid";
+
 
 export default function EditableTable({
   columns,

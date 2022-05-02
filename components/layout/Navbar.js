@@ -1,9 +1,10 @@
-import NavItem from "./NavItem";
 import { useRouter } from "next/router";
+import NavItem from "./NavItem";
 
 export default function Navbar() {
   const router = useRouter();
   const {pathname} = router;
+
   return (
     <nav className={`navBar is-flex is-align-items-center is-justify-content-center p-2 ${pathname === "/" ? "navBar__mobileStyles": ""} `}>
       <NavItem title="Inicio" url="/" icon="bi bi-house" />

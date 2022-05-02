@@ -28,13 +28,15 @@ export default function ResponseStatusModal({
           <p className="mb-2">Más opciones:</p>
           {status === 200 ? (
             <>
-              {editPaths.includes(pathname) ? <button className="button is-warning" onClick={()=>router.reload()} ><i className="bi bi-pencil-fill mr-1"/> Volver a editar</button> : ""}
+              
               <button
                 onClick={() => router.push(pathToAddNew)}
                 className="button is-success mt-2"
               >
                 <i className="bi bi-plus" /> Añadir nuevo registro
               </button>
+
+              {editPaths.includes(pathname) ? <button className="button is-warning mt-3" onClick={()=>router.reload()} ><i className="bi bi-pencil-fill mr-1"/> Volver a editar</button> : ""}
             </>
           ) : (
             <>
