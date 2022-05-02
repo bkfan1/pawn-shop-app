@@ -7,7 +7,7 @@ CRUD operations for:
 - Jewelry purchases
 - Loans
 
-## Goals reached and future goals
+## Reached goals and future features
 - [ ] CRUD operations por pawns, jewelry purchases, loans
 - [ ] Add login-account system
 - [ ] Create "Customer" entity and add him CRUD operations
