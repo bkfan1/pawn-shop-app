@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { regex } from "../utils/regex";
 
 export const useJewelryPaymentData = (

@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 export const useTableRows = (initialRows = [], initialRowSchema = {}) => {
   const [rows, setRows] = useState(initialRows);
 
@@ -59,5 +60,12 @@ export const useTableRows = (initialRows = [], initialRowSchema = {}) => {
     return fields.every((field) => field !== "");
   };
 
-  return { rows, setRows, addRow, deleteRow, rowCellInputValueOnChange, rowsValidation };
+  return {
+    rows,
+    setRows,
+    addRow,
+    deleteRow,
+    rowCellInputValueOnChange,
+    rowsValidation,
+  };
 };
