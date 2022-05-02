@@ -6,10 +6,10 @@ import ViewOnlyTable from "../../components/tables/ViewOnlyTable";
 
 export default function AllLoansSection({ loans }) {
   console.log(loans);
-  
+
   return (
     <Layout>
-        <ViewOnlyTable data={loans} />
+      <ViewOnlyTable data={loans} />
     </Layout>
   );
 }

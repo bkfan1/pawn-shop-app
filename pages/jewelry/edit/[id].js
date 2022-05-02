@@ -79,7 +79,7 @@ const jewelryPurchaseTest = {
 };
 
 export default function editJewelrySection({ jewelryPurchase }) {
-  console.log(jewelryPurchase)
+  console.log(jewelryPurchase);
   return (
     <Layout>
       <JewelryForm jewelryPurchase={jewelryPurchase} />
