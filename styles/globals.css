@@ -48,7 +48,6 @@ th{
     max-height: 595px;
     overflow-y: scroll;
     background-color: white;
-    border-radius: var(--rounded);
 }
 
 .rowInput{
@@ -88,8 +87,6 @@ th{
     min-width: 360px;
     min-height: 360px;
 }
-
-
 
 
 @media screen and (max-width:1024px) {
