@@ -1,17 +1,21 @@
-import { deleteUniquePawn, getUniquePawn, updateUniquePawn } from "../../../middleware";
+import {
+  deleteUniquePawn,
+  getUniquePawn,
+  updateUniquePawn,
+} from "../../../middleware/pawns/index";
 
 export default async function handler(req, res) {
   switch (req.method) {
     case "GET":
-        return await getUniquePawn(req, res);
+      return await getUniquePawn(req, res);
       break;
 
     case "PUT":
-        return await updateUniquePawn(req, res);
+      return await updateUniquePawn(req, res);
       break;
 
     case "DELETE":
-        return await deleteUniquePawn(req, res);
+      return await deleteUniquePawn(req, res);
       break;
 
     default:

@@ -1,4 +1,4 @@
-import { getAllLoans, createLoan } from "../../../middleware/index";
+import { getAllLoans, createLoan } from "../../../middleware/loans/index";
 
 export default async function handler(req, res) {
   switch (req.method) {

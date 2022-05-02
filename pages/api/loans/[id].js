@@ -1,4 +1,8 @@
-import {getUniqueLoan, updateUniqueLoan, deleteUniqueLoan} from "../../../middleware/index";
+import {
+  getUniqueLoan,
+  updateUniqueLoan,
+  deleteUniqueLoan,
+} from "../../../middleware/loans/index";
 
 export default async function handler(req, res) {
   switch (req.method) {
