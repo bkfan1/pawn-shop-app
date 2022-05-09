@@ -66,7 +66,7 @@ export default function ViewOnlyTable({ data }) {
           <table className="table is-striped is-hoverable is-fullwidth">
             <thead>
               <tr>
-                <th>ID</th>
+                <th className="idTableHeader">ID</th>
                 <th>Fecha</th>
                 <th>Detalles</th>
                 <th>Acciones</th>

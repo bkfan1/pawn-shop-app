@@ -40,7 +40,7 @@ export default function ViewOnlyRow({ rowData }) {
   return (
     <>
       <tr>
-        <td>
+        <td className="idTableData">
           <span>{rowData._id}</span>
         </td>
         <td title="dd/mm/aaaa">{rowData.date ? convertDate(rowData.date) : rowData.agreementDate ? convertDate(rowData.agreementDate) : ""}</td>
