@@ -171,7 +171,7 @@ export default function LoanForm({ loan }) {
               <hr />
               <section>
                 <h1 className="title is-size-5">Datos de préstamo</h1>
-                <section className="my-3 is-flex">
+                <section className="loanMoneySection my-3 is-flex">
                   <div className="field mr-3">
                     <label className="label">Capital</label>
                     <input

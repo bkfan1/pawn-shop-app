@@ -13,7 +13,6 @@ body {
 main {
   width: 100%;
   padding: 20px 0px;
-
 }
 
 th {
@@ -107,6 +106,10 @@ th {
 @media screen and (max-width: 748px) {
   .rowButton {
     margin-bottom: 10px;
+  }
+
+  .loanMoneySection {
+    flex-direction: column;
   }
 }
 
