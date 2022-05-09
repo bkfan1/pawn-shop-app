@@ -6,17 +6,13 @@
 }
 
 body {
-  min-height: 100vh;
-  overflow-x:scroll;
+  min-height: calc(100vh - 100px);
   background-color: #222;
 }
 
 main {
   width: 100%;
   min-height: 100vh;
-  overflow-x:scroll;
-
-  padding: 2.5rem;
 }
 
 th {
