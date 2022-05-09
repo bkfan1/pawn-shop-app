@@ -7,6 +7,8 @@
 
 body {
   min-height: 100vh;
+  overflow-y:hidden;
+  overflow-x: hidden;
   background-color: #222;
 }
 
@@ -24,6 +26,7 @@ th {
   width: 100%;
   background-color: #181818 !important;
 }
+
 
 .navBar__mobileStyles {
   position: absolute;
