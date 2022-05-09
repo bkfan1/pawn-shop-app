@@ -5,16 +5,15 @@ import { useTableRows } from "../../hooks/useTableRows";
 import { useResponseStatus } from "../../hooks/useResponseStatus";
 import { useCustomer } from "../../hooks/useCustomer";
 import { useDate } from "../../hooks/useDate";
+import { useSubmitFormError } from "../../hooks/useSubmitFormError";
 
 import EditableTable from "../tables/EditableTable";
 import CustomerDataForm from "./CustomerDataForm";
 
 import ResponseStatusModal from "../misc/ResponseStatusModal";
 
-
 import axios from "axios";
 import { nanoid } from "nanoid";
-
 
 export default function LoanForm({ loan }) {
   const router = useRouter();
@@ -64,6 +63,8 @@ export default function LoanForm({ loan }) {
 
   const { status, statusMessage, handleStatusMessage } = useResponseStatus();
 
+  const { submitError, setSubmitError } = useSubmitFormError(null);
+
   const handleOnSubmit = async () => {
     const isValidCustomerData = customerDataValidation();
     const isValidRowData = rowsValidation();
@@ -78,9 +79,7 @@ export default function LoanForm({ loan }) {
     ) {
       const method = pathname === "/loans/add" ? "POST" : "PUT";
       const url =
-        pathname === "/loans/add"
-          ? "/api/loans"
-          : `/api/loans/${loan._id}`;
+        pathname === "/loans/add" ? "/api/loans" : `/api/loans/${loan._id}`;
 
       const data =
         pathname === "/loans/add"
@@ -122,6 +121,10 @@ export default function LoanForm({ loan }) {
       res.status === 200
         ? console.log("compra registrada con exito")
         : console.warn("ocurrión un error al actualizar la compra");
+    } else {
+      setSubmitError(
+        "Hay uno o más campos vacíos o con información incorrecta."
+      );
     }
   };
 
@@ -159,7 +162,7 @@ export default function LoanForm({ loan }) {
               </div>
             </section>
             <hr className="mt-3" />
-            <section className="is-flex is-flex-direction-column loanForm_formsHolder">
+            <section className="is-flex is-flex-direction-column  loanForm_formsHolder">
               <section className="customerDataFormLoanSection mr-5">
                 <h1 className="title is-size-5">Datos de cliente</h1>
                 <CustomerDataForm
@@ -168,7 +171,6 @@ export default function LoanForm({ loan }) {
                   disabled={paths.includes(pathname) ? true : false}
                 />
               </section>
-              <hr />
               <section>
                 <h1 className="title is-size-5">Datos de préstamo</h1>
                 <section className="loanMoneySection my-3 is-flex">
@@ -198,14 +200,6 @@ export default function LoanForm({ loan }) {
                     />
                   </div>
                 </section>
-                <EditableTable
-                  columns={columns}
-                  rows={rows}
-                  addRow={addRow}
-                  deleteRow={deleteRow}
-                  rowCellInputValueOnChange={rowCellInputValueOnChange}
-                  disabled={paths.includes(pathname) ? true : false}
-                />
                 <div className="field">
                   <label className="label">Monto total</label>
                   <input
@@ -217,7 +211,27 @@ export default function LoanForm({ loan }) {
                     disabled={paths.includes(pathname) ? true : false}
                   />
                 </div>
+                <EditableTable
+                  columns={columns}
+                  rows={rows}
+                  addRow={addRow}
+                  deleteRow={deleteRow}
+                  rowCellInputValueOnChange={rowCellInputValueOnChange}
+                  disabled={paths.includes(pathname) ? true : false}
+                />
+              
               </section>
+
+              
+            </section>
+            {submitError ? (
+                <p className="has-text-danger has-text-weight-bold">
+                  {submitError}
+                </p>
+              ) : (
+                ""
+              )}
+
               {pathname === "/loans/add" || pathname === "/loans/edit/[id]" ? (
                 <button
                   onClick={handleOnSubmit}
@@ -238,7 +252,6 @@ export default function LoanForm({ loan }) {
               ) : (
                 ""
               )}
-            </section>
           </>
         )}
       </div>

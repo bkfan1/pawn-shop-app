@@ -11,6 +11,7 @@ import ResponseStatusModal from "../misc/ResponseStatusModal";
 
 import { nanoid } from "nanoid";
 import axios from "axios";
+import { useSubmitFormError } from "../../hooks/useSubmitFormError";
 
 
 export default function JewelryForm({ jewelryPurchase }) {
@@ -74,6 +75,8 @@ export default function JewelryForm({ jewelryPurchase }) {
     handleStatusMessage,
   } = useResponseStatus();
 
+  const {submitError, setSubmitError} = useSubmitFormError(null);
+
   const handleOnSubmit = async () => {
     const isValidPaymentData = paymentDataValidation();
     const isValidRowData = rowsValidation();
@@ -112,6 +115,9 @@ export default function JewelryForm({ jewelryPurchase }) {
       console.log(res.status);
 
       handleStatusMessage(res.status);
+    }
+    else{
+      setSubmitError('Hay uno o más campos vacíos o con información incorrecta.')
     }
   };
 
@@ -174,6 +180,7 @@ export default function JewelryForm({ jewelryPurchase }) {
                 />
               </section>
             </section>
+            {submitError ? <p className="has-text-danger has-text-weight-bold">{submitError}</p> : ""}
 
             {pathname === "/jewelry/add" ||
             pathname === "/jewelry/edit/[id]" ? (

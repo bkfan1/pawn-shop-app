@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useTableRows } from "../../hooks/useTableRows";
 import { useCustomer } from "../../hooks/useCustomer";
 import { useResponseStatus } from "../../hooks/useResponseStatus";
+import { useSubmitFormError } from "../../hooks/useSubmitFormError";
 
 import axios from "axios";
 import { nanoid } from "nanoid";
@@ -82,6 +83,8 @@ export default function PawnForm({ pawn }) {
 
   const { status, statusMessage, handleStatusMessage } = useResponseStatus();
 
+  const { submitError, setSubmitError } = useSubmitFormError(null);
+
   const handleOnSubmit = async () => {
     const isValidRowData = rowsValidation();
     const isValidCustomerData = customerDataValidation();
@@ -131,6 +134,9 @@ export default function PawnForm({ pawn }) {
       res.status === 200
         ? console.log("exito pawn")
         : console.warn("error pawn");
+    }
+    else{
+      setSubmitError('Hay uno o más campos vacíos o con información incorrecta.')
     }
   };
 
@@ -199,6 +205,14 @@ export default function PawnForm({ pawn }) {
                   rowCellInputValueOnChange={rowCellInputValueOnChange}
                 />
               </section>
+
+              {submitError ? (
+                <p className="has-text-danger has-text-weight-bold">
+                  {submitError}
+                </p>
+              ) : (
+                ""
+              )}
 
               {pathname === "/pawns/add" || pathname === "/pawns/edit/[id]" ? (
                 <button

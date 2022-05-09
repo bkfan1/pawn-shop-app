@@ -7,9 +7,9 @@ export default function CustomerDataForm({ customer, customerDataOnChange }) {
   const paths = ["/loans", "/jewelry", "/pawns"];
 
   return (
-    <form className="customerDataForm is-flex">
-      <section className="mr-3">
-        <div className="field">
+    <form className="customerDataForm is-flex is-flex-direction-column">
+      <section className="is-flex">
+        <div className="field mr-3">
           <label className="label">Nombre</label>
           <input
             type="text"
@@ -23,12 +23,12 @@ export default function CustomerDataForm({ customer, customerDataOnChange }) {
         </div>
 
         <div className="field">
-          <label className="label">Número tlf.</label>
+          <label className="label">Apellido</label>
           <input
             type="text"
-            name="tel"
+            name="surname"
             className="input"
-            value={customer.tel}
+            value={customer.surname}
             onChange={customerDataOnChange}
             required
             disabled={paths.includes(pathname) ? true : false}
@@ -36,14 +36,14 @@ export default function CustomerDataForm({ customer, customerDataOnChange }) {
         </div>
       </section>
 
-      <section className="mr-3">
-        <div className="field">
-          <label className="label">Apellido</label>
+      <section className="is-flex ">
+        <div className="field mr-3">
+          <label className="label">Número tlf.</label>
           <input
             type="text"
-            name="surname"
+            name="tel"
             className="input"
-            value={customer.surname}
+            value={customer.tel}
             onChange={customerDataOnChange}
             required
             disabled={paths.includes(pathname) ? true : false}
