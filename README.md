@@ -7,7 +7,5 @@ CRUD operations for:
 - Jewelry purchases
 - Loans
 
-## Future features
-- Add login-account system
-- Create "Customer" entity and add him CRUD operations
-- Improve and fix data validations
+## Live demo:
+https://pawn-shop-app.vercel.app/
