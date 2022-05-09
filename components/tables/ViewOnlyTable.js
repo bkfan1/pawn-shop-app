@@ -63,7 +63,7 @@ export default function ViewOnlyTable({ data }) {
         </section>
 
         <div className="tableHolder">
-          <table className="table is-striped is-hoverable">
+          <table className="table is-striped is-hoverable is-fullwidth">
             <thead>
               <tr>
                 <th>Fecha</th>
