@@ -27,11 +27,18 @@ th {
   background-color: #181818 !important;
 }
 
-
 .navBar__mobileStyles {
   position: absolute;
   z-index: 3;
   height: 100% !important;
+}
+
+.myFooter__mobileStyles{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
 }
 
 .modalOverlay {
@@ -51,7 +58,19 @@ th {
   max-height: 595px;
   overflow-y: scroll;
   background-color: white;
+  border-radius: var(--rounded);
 }
+
+ /* Hide scrollbar for Chrome, Safari and Opera */
+ .customModal::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.customModal {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+} 
 
 .rowInput {
   width: 100% !important;
@@ -119,5 +138,14 @@ th {
 @media screen and (max-width: 570px) {
   .customerDataForm {
     flex-direction: column;
+  }
+  .customerDataForm section{
+    margin-right: 0px !important;
+  }
+  .customerDataFormLoanSection{
+    margin-right: 0px !important;
+  }
+  .dni-field{
+    margin-top: 10px;
   }
 }
