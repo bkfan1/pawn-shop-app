@@ -171,6 +171,7 @@ export default function LoanForm({ loan }) {
                   disabled={paths.includes(pathname) ? true : false}
                 />
               </section>
+              <hr/>
               <section>
                 <h1 className="title is-size-5">Datos de préstamo</h1>
                 <section className="loanMoneySection my-3 is-flex">
