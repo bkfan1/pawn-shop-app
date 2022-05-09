@@ -1,5 +1,8 @@
-import PawnForm from "../../../components/forms/PawnForm";
 import Layout from "../../../components/layout/Layout";
+import PawnForm from "../../../components/forms/PawnForm";
+
+import {connection} from "../../../database/connection";
+import Pawn from "../../../database/models/Pawn";
 
 export default function EditPawnSection({ pawn }) {
   return (
@@ -9,21 +12,13 @@ export default function EditPawnSection({ pawn }) {
   );
 }
 
-export async function getStaticPaths() {
-  const res = await fetch("http://localhost:3000/api/pawns");
-  const pawns = await res.json();
+export async function getServerSideProps(context){
+  const db = await connection();
+  const pawn = await Pawn.findById(context.params.id).lean();
 
-  const paths = pawns.map((pawn) => ({
-    params: { id: pawn._id },
-  }));
+  pawn._id = `${pawn._id}`;
+  pawn.createdAt = `${pawn.createdAt}`;
 
-  return { paths, fallback: false };
-}
+  return { props: { pawn } }
 
-export async function getStaticProps({ params }) {
-  const res = await fetch(`http://localhost:3000/api/pawns/${params.id}`);
-
-  const pawn = await res.json();
-
-  return { props: { pawn } };
 }

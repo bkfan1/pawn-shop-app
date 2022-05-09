@@ -1,5 +1,8 @@
-import LoanForm from "../../../components/forms/LoanForm";
 import Layout from "../../../components/layout/Layout";
+import LoanForm from "../../../components/forms/LoanForm";
+
+import { connection } from "../../../database/connection";
+import Loan from "../../../database/models/Loan";
 
 export default function EditLoanSection({ loan }) {
   return (
@@ -9,21 +12,11 @@ export default function EditLoanSection({ loan }) {
   );
 }
 
-export async function getStaticPaths() {
-  const res = await fetch("http://localhost:3000/api/loans");
-  const loans = await res.json();
+export async function getServerSideProps(context) {
 
-  const paths = loans.map((loan) => ({
-    params: { id: loan._id },
-  }));
-
-  return { paths, fallback: false };
-}
-
-export async function getStaticProps({ params }) {
-  const res = await fetch(`http://localhost:3000/api/loans/${params.id}`);
-
-  const loan = await res.json();
+  const loan = await Loan.findById(context.params.id).lean();
+  loan._id = `${loan._id}`;
+  loan.createdAt = `${loan.createdAt}`;
 
   return { props: { loan } };
 }

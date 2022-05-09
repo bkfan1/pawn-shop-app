@@ -1,23 +1,24 @@
-import PawnForm from "../../../components/forms/PawnForm";
 import Layout from "../../../components/layout/Layout";
+import PawnForm from "../../../components/forms/PawnForm";
 
-const somePawn = {
-  agreementDate: "",
-  expiringDate: "",
-  customer: {
-    name: "",
-    surname: "",
-    dni: "",
-    tel: "",
-    address: "",
-  },
-
-  goods: [],
-};
 export default function AddPawnSection() {
+  const pawn = {
+    agreementDate: "",
+    expiringDate: "",
+    customer: {
+      name: "",
+      surname: "",
+      dni: "",
+      tel: "",
+      address: "",
+    },
+  
+    goods: [],
+  };
+
   return (
     <Layout>
-      <PawnForm pawn={somePawn} />
+      <PawnForm pawn={pawn} />
     </Layout>
   );
 }

@@ -1,14 +1,14 @@
-import JewelryForm from "../../../components/forms/JewelryForm";
 import Layout from "../../../components/layout/Layout";
-import { nanoid } from "nanoid";
-const jewelryPurchaseHolder = {
-  jewelry: [],
-};
+import JewelryForm from "../../../components/forms/JewelryForm";
 
 export default function AddJewelrySection() {
+  const jewelryPurchase = {
+    jewelry: [],
+  };
+
   return (
     <Layout>
-      <JewelryForm jewelryPurchase={jewelryPurchaseHolder} />
+      <JewelryForm jewelryPurchase={jewelryPurchase} />
     </Layout>
   );
 }

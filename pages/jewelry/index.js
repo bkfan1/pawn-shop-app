@@ -1,6 +1,9 @@
 import Layout from "../../components/layout/Layout";
 import ViewOnlyTable from "../../components/tables/ViewOnlyTable";
 
+import { connection } from "../../database/connection";
+import JewelryPurchase from "../../database/models/JewelryPurchase";
+
 export default function AllJewelryPurchasesSection({ jewelryPurchases }) {
   return (
     <Layout>
@@ -9,10 +12,17 @@ export default function AllJewelryPurchasesSection({ jewelryPurchases }) {
   );
 }
 
-export async function getStaticProps() {
-  const res = await fetch(`http://localhost:3000/api/jewelry/`);
+export async function getServerSideProps() {
+  const db = await connection();
+  const res = await JewelryPurchase.find({});
 
-  const jewelryPurchases = await res.json();
+  const jewelryPurchases = res.map((doc) => {
+    const jewelryPurchase = doc.toObject();
+    jewelryPurchase._id = `${jewelryPurchase._id}`;
+    jewelryPurchase.createdAt = `${jewelryPurchase.createdAt}`;
+
+    return jewelryPurchase;
+  });
 
   return { props: { jewelryPurchases } };
 }
