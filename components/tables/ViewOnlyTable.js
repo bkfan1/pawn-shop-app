@@ -5,7 +5,6 @@ import { useLocalPagination } from "../../hooks/useLocalPagination";
 
 import ViewOnlyRow from "./rows/ViewOnlyRow";
 
-
 export default function ViewOnlyTable({ data }) {
   const router = useRouter();
   const { pathname } = router;
@@ -74,11 +73,17 @@ export default function ViewOnlyTable({ data }) {
               </tr>
             </thead>
             <tbody>
-              {dateFilterValue === ""
-                ? data.map((row) => <ViewOnlyRow rowData={row} key={row.id} />)
-                : filteredData.map((row) => (
-                    <ViewOnlyRow rowData={row} key={row.id} />
-                  ))}
+              {dateFilterValue === "" ? (
+                data.map((row) => <ViewOnlyRow rowData={row} key={row.id} />)
+              ) : filteredData.length === 0 ? (
+                <h1 className="mt-2 has-text-weight-bold">
+                  No se han encontrado resultados.
+                </h1>
+              ) : (
+                filteredData.map((row) => (
+                  <ViewOnlyRow rowData={row} key={row._id} />
+                ))
+              )}
             </tbody>
           </table>
         </div>
