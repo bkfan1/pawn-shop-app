@@ -57,7 +57,7 @@ export default function ViewOnlyTable({ data }) {
               : pathname === "/pawns"
               ? "nuevo empeño"
               : pathname === "/jewelry"
-              ? " nueva compra de joyas"
+              ? " nueva compra"
               : ""}
           </button>
         </section>
