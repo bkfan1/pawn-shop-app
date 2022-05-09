@@ -66,7 +66,6 @@ export default function ViewOnlyTable({ data }) {
           <table className="table is-striped is-hoverable">
             <thead>
               <tr>
-                {/*<th>ID</th>*/}
                 <th>Fecha</th>
                 <th>Detalles</th>
                 <th>Acciones</th>
