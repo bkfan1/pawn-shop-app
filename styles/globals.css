@@ -6,6 +6,7 @@
 }
 
 body {
+  min-height: 100vh;
   background-color: #222;
 }
 
@@ -64,7 +65,7 @@ th {
 
 .tableHolder {
   background-color: white;
-  min-height: fit-content;
+  min-height: 415px;
   max-height: 415px;
   overflow-y: scroll;
   overflow-x: scroll;
