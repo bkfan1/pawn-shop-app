@@ -98,8 +98,8 @@ export default function PawnForm({ pawn }) {
       const method = pathname === "/pawns/add" ? "POST" : "PUT";
       const url =
         pathname === "/pawns/add"
-          ? "http://localhost:3000/api/pawns/"
-          : `http://localhost:3000/api/pawns/${pawn._id}`;
+          ? "/api/pawns/"
+          : `/api/pawns/${pawn._id}`;
 
       const data =
         pathname === "/pawns/add"

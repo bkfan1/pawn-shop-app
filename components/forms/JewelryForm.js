@@ -83,8 +83,8 @@ export default function JewelryForm({ jewelryPurchase }) {
       const method = pathname === "/jewelry/add" ? "POST" : "PUT";
       const url =
         pathname === "/jewelry/add"
-          ? "http://localhost:3000/api/jewelry"
-          : `http://localhost:3000/api/jewelry/${jewelryPurchase._id}`;
+          ? "/api/jewelry"
+          : `/api/jewelry/${jewelryPurchase._id}`;
 
       const data = pathname === "/jewelry/add" ? {
         date: transactionDate,

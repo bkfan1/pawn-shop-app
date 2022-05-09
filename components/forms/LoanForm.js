@@ -79,8 +79,8 @@ export default function LoanForm({ loan }) {
       const method = pathname === "/loans/add" ? "POST" : "PUT";
       const url =
         pathname === "/loans/add"
-          ? "http://localhost:3000/api/loans"
-          : `http://localhost:3000/api/loans/${loan._id}`;
+          ? "/api/loans"
+          : `/api/loans/${loan._id}`;
 
       const data =
         pathname === "/loans/add"
