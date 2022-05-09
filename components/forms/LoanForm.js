@@ -160,7 +160,7 @@ export default function LoanForm({ loan }) {
             </section>
             <hr className="mt-3" />
             <section className="is-flex is-flex-direction-column loanForm_formsHolder">
-              <section className="mr-5">
+              <section className="customerDataFormLoanSection mr-5">
                 <h1 className="title is-size-5">Datos de cliente</h1>
                 <CustomerDataForm
                   customer={customer}

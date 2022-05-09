@@ -64,7 +64,7 @@ export default function CustomerDataForm({ customer, customerDataOnChange }) {
         </div>
       </section>
 
-      <div className="field">
+      <div className="field dni-field">
         <label className="label">Cédula de identidad</label>
         <input
           type="text"
