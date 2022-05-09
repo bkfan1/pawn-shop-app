@@ -7,12 +7,15 @@
 
 body {
   min-height: calc(100vh - 100px);
+  overflow-x: scroll;
   background-color: #222;
 }
 
 main {
   width: 100%;
   min-height: 100vh;
+  overflow-x: scroll;
+
 }
 
 th {
