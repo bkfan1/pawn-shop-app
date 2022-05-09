@@ -5,7 +5,7 @@ import Pawn from "../../database/models/Pawn";
 export async function getAllPawns(req, res) {
   try {
     const db = await connection();
-    const allPawns = await Pawn.find();
+    const allPawns = await Pawn.find({});
     res.status(200).json(allPawns);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -22,14 +22,11 @@ export async function createPawn(req, res) {
   }
 }
 
-export async function getUniquePawn(req, res) {
-  const { query } = req;
-  const { id } = query;
-
+export async function getUniquePawn(req) {
   try {
     const db = await connection();
-    const uniquePawn = await Pawn.findById(id, req.body);
-    res.status(200).json(uniquePawn);
+    const uniquePawn = await Pawn.findById(id);
+    return uniquePawn;
     //await db.disconnect();
   } catch (error) {
     res.status(400).json({ error: error.message });
