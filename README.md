@@ -1,11 +1,11 @@
 # Pawn Shop App
 
-## What does this app 
+A fullstack CRUD app to keep and manage records of pawns, jewelry purchases and money loans for a pawn shop.
 
-CRUD operations for:
-- Pawns
-- Jewelry purchases
-- Loans
+## Gallery:
+
+https://imgur.com/a/JToURjJ
 
 ## Live demo:
+
 https://pawn-shop-app.vercel.app/
