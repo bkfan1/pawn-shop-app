@@ -10,7 +10,7 @@ export default function Loader(){
       const handleStart = (url) => url !== router.asPath && setLoading(true);
   
       const handleComplete = (url) =>
-        url !== router.asPath && setTimeout(() => setLoading(false), 1200);
+        url !== router.asPath && setTimeout(() => setLoading(false), 5000);
   
       router.events.on("routeChangeStart", handleStart);
       router.events.on("routeChangeComplete", handleComplete);
