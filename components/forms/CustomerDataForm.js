@@ -8,7 +8,7 @@ export default function CustomerDataForm({ customer, customerDataOnChange }) {
 
   return (
     <form className="customerDataForm is-flex is-flex-direction-column">
-        <div className="field mr-3">
+        <div className="field">
           <label className="label">Nombre</label>
           <input
             type="text"
@@ -34,7 +34,7 @@ export default function CustomerDataForm({ customer, customerDataOnChange }) {
           />
         </div>
 
-        <div className="field mr-3">
+        <div className="field">
           <label className="label">Número tlf.</label>
           <input
             type="text"
