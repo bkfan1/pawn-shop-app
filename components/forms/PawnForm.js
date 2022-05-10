@@ -153,6 +153,7 @@ export default function PawnForm({ pawn }) {
                 value={agreementDate}
                 className="input"
                 onChange={(e) => setAgreementDate(e.target.value)}
+                disabled={paths.includes(pathname) ? true : false}
               />
             </div>
 
@@ -163,7 +164,7 @@ export default function PawnForm({ pawn }) {
                 className="input"
                 name="expiringDate"
                 value={expiringDate}
-                onChange={(e) => setExpiringDate(e.target.value)}
+                onChange={(e) => setExpiringDate(e.target.value)} disabled={paths.includes(pathname) ? true : false}
               />
             </div>
           </section>
