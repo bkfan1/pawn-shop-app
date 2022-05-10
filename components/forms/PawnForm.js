@@ -9,11 +9,9 @@ import { useSubmitFormError } from "../../hooks/useSubmitFormError";
 import axios from "axios";
 import { nanoid } from "nanoid";
 
-
 import EditableTable from "../tables/EditableTable";
 import CustomerDataForm from "./CustomerDataForm";
 import ResponseStatusModal from "../misc/ResponseStatusModal";
-
 
 export default function PawnForm({ pawn }) {
   const router = useRouter();
@@ -100,9 +98,7 @@ export default function PawnForm({ pawn }) {
       console.log("hell yeah");
       const method = pathname === "/pawns/add" ? "POST" : "PUT";
       const url =
-        pathname === "/pawns/add"
-          ? "/api/pawns/"
-          : `/api/pawns/${pawn._id}`;
+        pathname === "/pawns/add" ? "/api/pawns/" : `/api/pawns/${pawn._id}`;
 
       const data =
         pathname === "/pawns/add"
@@ -134,108 +130,82 @@ export default function PawnForm({ pawn }) {
       res.status === 200
         ? console.log("exito pawn")
         : console.warn("error pawn");
-    }
-    else{
-      setSubmitError('Hay uno o más campos vacíos o con información incorrecta.')
+    } else {
+      setSubmitError(
+        "Hay uno o más campos vacíos o con información incorrecta."
+      );
     }
   };
 
   return (
     <>
-      <div className="pawnForm is-flex is-flex-direction-column has-background-white p-4">
-        {status !== null ? (
-          <>
-            <ResponseStatusModal
-              status={status}
-              statusMessage={statusMessage}
-              pathToAddNew={"/pawns/add"}
-            />
-          </>
-        ) : (
-          <>
-            <section className=" mb-3">
-              <h1 className="title is-size-5">Datos de fecha</h1>
-              <section className="is-flex">
-                <div className="field mr-5">
-                  <label className="label">Fecha de acuerdo:</label>
-                  <input
-                    type="date"
-                    name="agreementDate"
-                    className="input"
-                    value={agreementDate}
-                    style={{ width: "150px" }}
-                    onChange={(e) => setAgreementDate(e.target.value)}
-                    disabled={paths.includes(pathname) ? true : false}
-                  />
-                </div>
+      {status !== null ? (
+        <ResponseStatusModal status={status} statusMessage={statusMessage} />
+      ) : (
+        <div className="pawnForm is-flex is-flex-direction-column has-background-white p-4">
+          <h1 className="title is-size-5">Datos de fecha</h1>
+          <section className="is-flex">
+            <div className="field mr-4">
+              <label className="label">Fecha de acuerdo</label>
+              <input
+                type="date"
+                name="agreementDate"
+                value={agreementDate}
+                className="input"
+                onChange={(e) => setAgreementDate(e.target.value)}
+              />
+            </div>
 
-                <div className="field">
-                  <label className="label">Fecha de vencimiento:</label>
-                  <input
-                    type="date"
-                    name="expiringDate"
-                    className="input"
-                    value={expiringDate}
-                    style={{ width: "150px" }}
-                    onChange={(e) => setExpiringDate(e.target.value)}
-                    disabled={paths.includes(pathname) ? true : false}
-                  />
-                </div>
-              </section>
-            </section>
-            <hr className="mt-1" />
+            <div className="field">
+              <label className="label">Fecha de vencimiento</label>
+              <input
+                type="date"
+                className="input"
+                name="expiringDate"
+                value={expiringDate}
+                onChange={(e) => setExpiringDate(e.target.value)}
+              />
+            </div>
+          </section>
+          <hr className="my-2"/>
 
-            <section className="is-flex is-flex-direction-column">
-              <section>
-                <h1 className="title is-size-5">Datos de cliente</h1>
-                <CustomerDataForm
-                  customer={customer}
-                  customerDataOnChange={customerDataOnChange}
-                />
-              </section>
-              <hr className="mb-2" />
 
-              <section className="mt-4">
-                <h1 className="title is-size-5">Datos de Bien/es</h1>
-                <EditableTable
-                  columns={columns}
-                  rows={rows}
-                  addRow={addRow}
-                  deleteRow={deleteRow}
-                  rowCellInputValueOnChange={rowCellInputValueOnChange}
-                />
-              </section>
+          <section className="is-flex is-flex-direction-column ">
+            <div className="">
+              <h1 className="title is-size-5">Datos de cliente</h1>
+              <CustomerDataForm
+                customer={customer}
+                customerDataOnChange={customerDataOnChange}
+              />
+            </div>
 
-              {submitError ? (
-                <p className="has-text-danger has-text-weight-bold">
-                  {submitError}
-                </p>
-              ) : (
-                ""
-              )}
+            <hr className="my-4"/>
 
-              {pathname === "/pawns/add" || pathname === "/pawns/edit/[id]" ? (
-                <button
-                  onClick={handleOnSubmit}
-                  className="button is-success mt-4"
-                >
-                  {pathname === "/pawns/add" ? (
-                    <i className="bi bi-plus" />
-                  ) : (
-                    <i className="bi bi-arrow-up" />
-                  )}
+            <div>
+              <h1 className="title is-size-5">Datos de bien(es)</h1>
+              <EditableTable
+                columns={columns}
+                rows={rows}
+                addRow={addRow}
+                deleteRow={deleteRow}
+                rowCellInputValueOnChange={rowCellInputValueOnChange}
+              />
+            </div>
+          </section>
 
-                  {pathname === "/pawns/add"
-                    ? "Registrar empeño"
-                    : "Actualizar empeño"}
-                </button>
-              ) : (
-                ""
-              )}
-            </section>
-          </>
-        )}
-      </div>
+          {submitError ? <p className="has-text-danger has-text-weight-bold my-2">{submitError}</p> : ""}
+
+          {pathname === "/pawns/add" || pathname === "/pawns/edit/[id]" ? (
+            <button onClick={handleOnSubmit} className="button is-success">
+              {pathname === "/pawns/add"
+                ? "Registrar empeño"
+                : "Actualizar empeño"}
+            </button>
+          ) : (
+            ""
+          )}
+        </div>
+      )}
     </>
   );
 }

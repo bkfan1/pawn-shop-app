@@ -8,7 +8,6 @@ export default function CustomerDataForm({ customer, customerDataOnChange }) {
 
   return (
     <form className="customerDataForm is-flex is-flex-direction-column">
-      <section className="is-flex">
         <div className="field mr-3">
           <label className="label">Nombre</label>
           <input
@@ -34,9 +33,7 @@ export default function CustomerDataForm({ customer, customerDataOnChange }) {
             disabled={paths.includes(pathname) ? true : false}
           />
         </div>
-      </section>
 
-      <section className="is-flex ">
         <div className="field mr-3">
           <label className="label">Número tlf.</label>
           <input
@@ -62,7 +59,6 @@ export default function CustomerDataForm({ customer, customerDataOnChange }) {
             disabled={paths.includes(pathname) ? true : false}
           />
         </div>
-      </section>
 
       <div className="field dni-field">
         <label className="label">Cédula de identidad</label>
