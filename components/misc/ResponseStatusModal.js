@@ -14,7 +14,7 @@ export default function ResponseStatusModal({
   ];
   return (
     <>
-      <figure className="statusFigure is-flex is-flex-direction-column is-align-items-center is-justify-content-center">
+      <figure className="statusFigure is-flex is-flex-direction-column is-align-items-center is-justify-content-center has-background-white">
         <i
           className={`bi ${
             status === 200
