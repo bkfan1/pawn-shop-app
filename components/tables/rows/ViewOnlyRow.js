@@ -23,7 +23,7 @@ export default function ViewOnlyRow({ rowData }) {
     const op = confirm("¿Realmente deseas eliminar este registro?:");
 
     if (op) {
-      const url = `http://localhost:3000/api/${pathname}/${rowData._id}`;
+      const url = `/api/${pathname}/${rowData._id}`;
 
       console.log(url);
 
