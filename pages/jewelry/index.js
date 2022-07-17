@@ -1,10 +1,8 @@
 import Layout from "../../components/layout/Layout";
 import ViewOnlyTable from "../../components/tables/ViewOnlyTable";
-
-import { connection } from "../../database/connection";
 import JewelryPurchase from "../../database/models/JewelryPurchase";
 
-export default function AllJewelryPurchasesSection({ jewelryPurchases }) {
+export default function AllJewelryPurchasesPage({ jewelryPurchases }) {
   return (
     <Layout>
       <ViewOnlyTable data={jewelryPurchases} />
@@ -13,7 +11,6 @@ export default function AllJewelryPurchasesSection({ jewelryPurchases }) {
 }
 
 export async function getServerSideProps() {
-  const db = await connection();
   const res = await JewelryPurchase.find({});
 
   const jewelryPurchases = res.map((doc) => {

@@ -1,10 +1,9 @@
 import Layout from "../../../components/layout/Layout";
 import LoanForm from "../../../components/forms/LoanForm";
 
-import { connection } from "../../../database/connection";
 import Loan from "../../../database/models/Loan";
 
-export default function EditLoanSection({ loan }) {
+export default function EditLoanPage({ loan }) {
   return (
     <Layout>
       <LoanForm loan={loan} />
