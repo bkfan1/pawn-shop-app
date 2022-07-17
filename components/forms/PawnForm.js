@@ -128,8 +128,8 @@ export default function PawnForm({ pawn }) {
       handleStatusMessage(res.status);
 
       res.status === 200
-        ? console.log("exito pawn")
-        : console.warn("error pawn");
+        ? console.log("Empeño registrado exitosamente.")
+        : console.warn("Error al registrar empeño.");
     } else {
       setSubmitError(
         "Hay uno o más campos vacíos o con información incorrecta."

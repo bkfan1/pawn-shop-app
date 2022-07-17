@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-import { useLocalPagination } from "../../hooks/useLocalPagination";
-
 import ViewOnlyRow from "./rows/ViewOnlyRow";
 
 export default function ViewOnlyTable({ data }) {
@@ -74,7 +72,7 @@ export default function ViewOnlyTable({ data }) {
             </thead>
             <tbody>
               {dateFilterValue === "" ? (
-                data.map((row) => <ViewOnlyRow rowData={row} key={row.id} />)
+                data.map((row) => <ViewOnlyRow rowData={row} key={row._id} />)
               ) : filteredData.length === 0 ? (
                 <h1 className="mt-2 has-text-weight-bold">
                   No se han encontrado resultados.

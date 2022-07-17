@@ -15,8 +15,6 @@ export default function ViewOnlyRow({ rowData }) {
   const router = useRouter();
   const { pathname } = router;
   const [showModal, setShowModal] = useState(false);
-  console.log(pathname);
-  console.log(rowData);
 
   const handleDelete = async () => {
     
@@ -30,8 +28,8 @@ export default function ViewOnlyRow({ rowData }) {
       const res = await axios.delete(url);
 
       res.status === 200
-        ? console.log("se ha eliminado con exito")
-        : console.warn("ha ocurrido un error al intentar eliminar");
+        ? console.log("El recurso ha sido eliminado con éxito")
+        : console.warn("Ha ocurrido un error al intentar eliminar el recurso.");
 
       router.reload();
     }
