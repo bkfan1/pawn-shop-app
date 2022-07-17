@@ -2,6 +2,7 @@ import Layout from "../../components/layout/Layout";
 import ViewOnlyTable from "../../components/tables/ViewOnlyTable";
 
 import Loan from "../../database/models/Loan";
+import { connection } from "../../database/connection";
 
 
 export default function AllLoansPage({ loans }) {
@@ -15,6 +16,7 @@ export default function AllLoansPage({ loans }) {
 }
 
 export async function getServerSideProps(context) {
+  const conn = await connection();
   const res = await Loan.find({});
 
   const loans = res.map((doc)=>{

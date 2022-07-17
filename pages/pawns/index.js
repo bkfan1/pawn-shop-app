@@ -1,7 +1,8 @@
 import Layout from "../../components/layout/Layout";
 import ViewOnlyTable from "../../components/tables/ViewOnlyTable";
 
-import Pawn from "../../database/models/Pawn"
+import Pawn from "../../database/models/Pawn";
+import {connection} from "../../database/connection";
 
 export default function AllPawnsSection({ pawns }) {
   return (
@@ -12,6 +13,8 @@ export default function AllPawnsSection({ pawns }) {
 }
 
 export async function getServerSideProps() {
+
+  const conn = await connection();
 
   const res = await Pawn.find({});
 
