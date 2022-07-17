@@ -13,7 +13,7 @@ export default async function handler(req, res) {
       return await createJewelryPurchase(req, res);
       break;
     default:
-      return res.status(403).json({ error: "Method not allowed" });
+      return res.status(403).json({});
       break;
   }
 }
