@@ -10,14 +10,12 @@ import convertDate from "../../../utils/formatDate";
 
 import axios from "axios";
 
-
 export default function ViewOnlyRow({ rowData }) {
   const router = useRouter();
   const { pathname } = router;
   const [showModal, setShowModal] = useState(false);
 
   const handleDelete = async () => {
-    
     const op = confirm("¿Realmente deseas eliminar este registro?:");
 
     if (op) {
@@ -41,27 +39,37 @@ export default function ViewOnlyRow({ rowData }) {
         <td className="idTableData">
           <span>{rowData._id}</span>
         </td>
-        <td title="dd/mm/aaaa">{rowData.date ? convertDate(rowData.date) : rowData.agreementDate ? convertDate(rowData.agreementDate) : ""}</td>
+        <td title="dd/mm/aaaa">
+          {rowData.date
+            ? convertDate(rowData.date)
+            : rowData.agreementDate
+            ? convertDate(rowData.agreementDate)
+            : ""}
+        </td>
         <td>
           <a
             onClick={() => {
-              setShowModal(!showModal)
+              setShowModal(!showModal);
             }}
             className="button is-info is-light is-size-7"
           >
             Ver
           </a>
-          {showModal ? <Modal show={showModal} onClose={() => setShowModal(false)}>
-            {pathname === "/jewelry" ? (
-              <JewelryForm jewelryPurchase={rowData} />
-            ) : pathname === "/loans" ? (
-              <LoanForm loan={rowData} />
-            ) : pathname === "/pawns" ? (
-              <PawnForm pawn={rowData} />
-            ) : (
-              ""
-            )}
-          </Modal> : ""}
+          {showModal ? (
+            <Modal show={showModal} onClose={() => setShowModal(false)}>
+              {pathname === "/jewelry" ? (
+                <JewelryForm jewelryPurchase={rowData} />
+              ) : pathname === "/loans" ? (
+                <LoanForm loan={rowData} />
+              ) : pathname === "/pawns" ? (
+                <PawnForm pawn={rowData} />
+              ) : (
+                ""
+              )}
+            </Modal>
+          ) : (
+            ""
+          )}
         </td>
         <td>
           <button
@@ -72,15 +80,17 @@ export default function ViewOnlyRow({ rowData }) {
             <i className="bi bi-pencil" />
           </button>
 
-          <button
-            onClick={handleDelete}
-            title="Eliminar"
-            className="button is-danger is-size-7"
-          >
-            <i className="bi bi-trash" />
-          </button>
-
-
+          {process.env.NODE_ENV === "production" ? (
+            ""
+          ) : (
+            <button
+              onClick={handleDelete}
+              title="Eliminar"
+              className="button is-danger is-size-7"
+            >
+              <i className="bi bi-trash" />
+            </button>
+          )}
         </td>
       </tr>
     </>
