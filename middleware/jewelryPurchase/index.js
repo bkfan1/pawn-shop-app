@@ -1,4 +1,5 @@
 import JewelryPurchase from "../../database/models/JewelryPurchase";
+import { connection } from "../../database/connection";
 
 export async function getAllJewelryPurchases(req, res) {
   try {
@@ -35,6 +36,7 @@ export async function updateUniqueJewelryPurchase(req, res) {
   const { id } = query;
 
   try {
+    const db = await connection();
     const jewelryPurchase = await JewelryPurchase.findByIdAndUpdate(
       id,
       req.body,
